@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/21 15:46:20 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 15:12:17 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char			*ft_realloc(char **arr, int size, t_flg *lst)
 	if (!arr || !size)
 		return (*arr);
 	len = ft_strlen(*arr);
-	(('c' == lst->type || 'C' == lst->type) && ft_strlen(*arr) == 0) ? len++  : 0;
 	new = ft_memalloc((len + size) + 1);
 	new = ft_memcpy(new, *arr, len + size);
 	if (*arr != 0 && lst->type != 's' && lst->type != 'S')
@@ -61,10 +60,10 @@ char		*ft_unicon_arr(t_or *u)
 	int		y;
 
 
-	x = (u->wct != 0) + ((unsigned)u->wct > 127) + ((unsigned)u->wct > 2047) +
-		((unsigned)u->wct > 65535);
+	x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct > 65535) +
+		((unsigned int)u->wct > 16777215);
 	y = 0;
-	arr = ft_memalloc(x + 1);
+	arr = ft_memalloc(x);
 	while (x--)
 		arr[y++] = u->byte[x];
 	return (arr);

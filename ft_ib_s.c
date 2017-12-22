@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:34:56 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/08 12:23:41 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 10:44:58 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char			*ft_ib_s(intmax_t num, intmax_t base)
 	intmax_t	x;
 
 	x = num_len(num, base);
+	x == 0 ? x++ : 0;
 	arr = (char*)malloc(sizeof(char) * x + 1);
 	temp = arr;
 	num == 0 ? arr[0] = '0' : 0;

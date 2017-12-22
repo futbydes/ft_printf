@@ -6,11 +6,12 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:34:56 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/09 11:36:32 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 10:43:38 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static uintmax_t			num_len(uintmax_t num, uintmax_t base)
 {
@@ -33,10 +34,11 @@ char			*ft_ib_u(uintmax_t num, uintmax_t base)
 	uintmax_t	x;
 
 	x = num_len(num, base);
+	x == 0 ? x++ : 0;
 	arr = (char*)malloc(sizeof(char) * x + 1);
 	temp = arr;
-	num == 0 ? arr[x--] = '0' : 0;
 	arr[x--] = 0;
+	num == 0 ? arr[0] = '0' : 0;
 	if (num > 0)
 		while (num)
 		{

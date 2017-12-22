@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 10:28:14 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/21 17:37:15 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 15:11:00 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ char		*ft_addspace(t_flg *lst, char *t)
 	char	*new;
 
 	if (lst->sign == 0 && lst->plus == 0 && (lst->type == 'd' ||
-				lst->type == 'D' || lst->type == 'i' || lst->type == 'u' ||
-				lst->type == 'U'))
+				lst->type == 'D' || lst->type == 'i'))
 	{
 		new = ft_realloc(&t, ft_strlen(t) + 1, lst);
 		ft_memmove(new + 1, new, ft_strlen(new));
@@ -89,6 +88,8 @@ char		*alignment_mfw(t_flg *lst, char *t)
 	int		x;
 
 	x = lst->m_fw - ft_strlen(t);
+//	printf("::::::::%d\n", x);
+//	printf("::::::::%s\n", t);
 	if (((lst->m_fw > lst->prc) || ('c' == lst->type || 's' == lst->type ||
 			'S' == lst->type ||	'C' == lst->type)) && x > 0 && lst->minus == 0)
 	{
@@ -101,7 +102,7 @@ char		*alignment_mfw(t_flg *lst, char *t)
 		(('c' == lst->type || 'C' == lst->type) && ft_strlen(new) == 0) ? x-- : 0;
 		t = ft_memset(t , ' ', x);
 	}
-	else if (lst->minus == 1 && lst->m_fw > 0 && lst->m_fw > lst->prc)
+	else if (lst->minus == 1 && lst->m_fw > 0 && lst->m_fw > lst->prc && x > -1)
 	{
 		new = ft_realloc(&t, x, lst);
 		t = new;

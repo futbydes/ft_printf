@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:22:32 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/21 11:01:29 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 11:08:35 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct 	s_flags
 	int			size;
 	char		sign;
 	wchar_t		*awct;
+	int			btread;
 }				t_flg;
 
 typedef union		u_uors

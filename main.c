@@ -6,13 +6,14 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/21 17:36:41 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 15:03:59 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
 #include <locale.h>
+#include <limits.h>
 
 int		main(void)
 {
@@ -512,6 +513,42 @@ int		main(void)
 	x = printf("%03.2d", -1); 
 	printf("%d\n", x); 
 	x = ft_printf("%03.2d", -1); 
+	printf("%d\n", x); 
+
+	printf("==TEST_97==\n");
+	x = printf("% u", 4294967296); 
+	printf("%d\n", x); 
+	x = ft_printf("% u", 4294967296); 
+	printf("%d\n", x); 
+
+	printf("==TEST_97==\n");
+	x = printf("%S", L"Á±≥"); 
+	printf("%d\n", x); 
+	x = ft_printf("%S", L"Á±≥"); 
+	printf("%d\n", x); 
+
+	printf("==TEST_98==\n");
+	x = printf("%C", L'猫');
+	printf("%d\n", x); 
+	x = ft_printf("%C", L'猫');
+	printf("%d\n", x); 
+
+	printf("==TEST_98==\n");
+	x = printf("%lx, %lx", 4342332, ULONG_MAX);
+	printf("%d\n", x); 
+	x = ft_printf("%lx, %lx", 4342332, ULONG_MAX);
+	printf("%d\n", x); 
+
+	printf("==TEST_99==\n");
+	x = printf("%ls", L"暖炉");
+	printf("%d\n", x); 
+//	x = ft_printf("%ls", L"暖炉");
+	printf("%d\n", x); 
+
+	printf("==TEST_99==\n");
+	x = printf("{%-13p}", &strlen);
+	printf("%d\n", x); 
+	x = ft_printf("{%-13p}", &strlen);
 	printf("%d\n", x); 
 
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 16:22:38 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/21 17:52:12 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 11:47:40 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_strctn(t_flg *lst)
 	lst->size = 0;
 	lst->sign = 0;
 	lst->awct = 0;
+	lst->btread = 0;
 }
 
 char		*print_operate(char **spec, va_list pt, t_flg *lst)
@@ -66,6 +67,7 @@ char		*print_operate(char **spec, va_list pt, t_flg *lst)
 	type_conv_uors(lst) ? u->us = type_conv_u(lst, pt, u) :
 		type_conv_s(lst, pt, u);
 	t = digit_conv(lst, u);
+//	printf("::::::%s\n", t);
 	lst->prc >= 0 ? t = presc_conv(lst, t, u) : 0;
 //	printf("::::::%s\n", t);
 	t = ft_format_str(lst, t, u);
@@ -77,7 +79,6 @@ char		*print_operate(char **spec, va_list pt, t_flg *lst)
 int			print_check(char **spec, va_list pt, int x)
 {
 	char	*t;
-	int		i;
 	t_flg	*lst;
 
 	while (**spec != 0)
@@ -86,15 +87,10 @@ int			print_check(char **spec, va_list pt, int x)
 		{
 			lst = (t_flg*)ft_memalloc(sizeof(t_flg));
 			t = print_operate(spec, pt, lst);
-			if ((lst->type == 'C' || lst->type == 'c') && *t == 0 && lst->minus == 1)
-				i = ft_strlen(t + 1);
-			else if (*t == 0 && (lst->type == 'C' || lst->type == 'c'))
-				i = ft_strlen(t) + 1;
-			else
-				i = ft_strlen(t);
-			(i == 0 && (lst->type == 'C' || lst->type == 'c')) ? i++ : 0;
-			x += i;
-			write(1, &(*t), i);
+			lst->btread == 0 ? lst->btread = ft_strlen(t) : 0;
+//			printf(":::::::::::%d\n", lst->btread);
+			x += lst->btread;
+			write(1, &(*t), lst->btread);
 			free(lst);
 		}
 		while (**spec != '%' && **spec != 0)

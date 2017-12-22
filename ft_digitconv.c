@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 16:21:39 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/21 17:52:07 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 15:11:16 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ char		*presc_conv(t_flg *lst, char *t, t_or *u)
 
 	*t == '-' ? lst->sign = 1 : 0;
 	x = lst->prc - (int)ft_strlen(t);
-//	printf(":::::%d\n", x);
 	if (0 == lst->prc && u->s == 0)
 		return (t = ft_memalloc(0));
 	if (('s' == lst->type || 'S' == lst->type) && x < 0)
@@ -56,7 +55,6 @@ char		*presc_conv(t_flg *lst, char *t, t_or *u)
 	else if (x >= 0 && 's' != lst->type && 'S' != lst->type &&
 			lst->type != 'c' && lst->type != 'C')
 	{
-//		printf("!!!:)))!!!\n");
 		p = ft_realloc(&t, x, lst);
 		temp = p;
 		ft_memmove(p + x, p, ft_strlen(p));
@@ -80,8 +78,12 @@ char		*ft_format_str(t_flg *lst, char *t, t_or *u)
 //	printf("::::1::::::%s\n", t);
 	if (lst->minus == 1 || lst->m_fw > (int)ft_strlen(t))
 		t = alignment_mfw(lst, t);
-	if (lst->type == 'p' || (lst->type == 'x' && lst->size != 3))
+	if (lst->type == 'p' || (lst->type == 'x'))
 		t = ft_lowcasealph(&t);
+	if ((lst->type == 'C' || lst->type == 'c') && *t == 0 && lst->minus == 1)
+		lst->btread = ft_strlen(t + 1);
+	else if ((lst->type == 'C' || lst->type == 'c') && u->uc == 0)
+		lst->btread = ft_strlen(t) + 1;
 //	printf("::::1::::::%s\n", t);
 	return (t);
 }
