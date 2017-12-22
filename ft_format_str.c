@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 10:28:14 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 15:11:00 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 17:34:07 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ char		*ft_format_zero(t_flg *lst, char *t)
 	char	*temp;
 	int		x;
 
-	x = lst->m_fw - (int)ft_strlen(t);
+	x = lst->m_fw - ((lst->type == 'C' || lst->type == 'c') ? 1 : ft_strlen(t));
+	lst->type == 'p' ? x -= 2 : 0; /*p kostyl' dlya 0x */
 	if (x > 0 && lst->oct == 1 && ft_addsign_condition(lst, t))
 		(lst->type == 'x' || lst->type == 'X') ? (x -= 2) : (x -= 1);
-	if (lst->m_fw > 0 && lst->minus == 0 && lst->prc < lst->m_fw &&
+	if (x > -1 && lst->m_fw > 0 && lst->minus == 0 && lst->prc < lst->m_fw &&
 				(lst->prc < 0 || lst->type == 's' || lst->type == 'S'))
 	{
 		new = ft_realloc(&t, (lst->sign > 0 ? (x - 1) : x), lst);
@@ -61,7 +62,8 @@ char		*ft_addsign(t_flg *lst, char *t, t_or *u)
 
 	if (ft_addsign_condition(lst, t))
 	{
-		if ((*t == 0 || u->arr == 0) && (lst->type == 'x' || lst->type == 'X'))
+		if (u->arr == 0 && (lst->type == 'x' || lst->type == 'X' ||
+					lst->type == 'o' || lst->type == 'O'))
 			return (t);
 		temp = ft_memalloc(3);
 		temp[0] = '0';
@@ -88,19 +90,16 @@ char		*alignment_mfw(t_flg *lst, char *t)
 	int		x;
 
 	x = lst->m_fw - ft_strlen(t);
-//	printf("::::::::%d\n", x);
-//	printf("::::::::%s\n", t);
 	if (((lst->m_fw > lst->prc) || ('c' == lst->type || 's' == lst->type ||
-			'S' == lst->type ||	'C' == lst->type)) && x > 0 && lst->minus == 0)
+			'S' == lst->type || 'C' == lst->type)) && x > 0 && lst->minus == 0)
 	{
 		new = ft_realloc(&t, x, lst);
 		t = new;
 		if (('c' == lst->type || 'C' == lst->type) && ft_strlen(new) == 0)
-			ft_memmove(new + x, new, 1);
+			(ft_memmove(new + x, new, 1) && x--);
 		else
 			ft_memmove(new + x, new, ft_strlen(new));
-		(('c' == lst->type || 'C' == lst->type) && ft_strlen(new) == 0) ? x-- : 0;
-		t = ft_memset(t , ' ', x);
+		t = ft_memset(t, ' ', x);
 	}
 	else if (lst->minus == 1 && lst->m_fw > 0 && lst->m_fw > lst->prc && x > -1)
 	{

@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 15:03:59 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 17:39:09 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -546,9 +546,15 @@ int		main(void)
 	printf("%d\n", x); 
 
 	printf("==TEST_99==\n");
-	x = printf("{%-13p}", &strlen);
+	x = printf("%03p", 0);
 	printf("%d\n", x); 
-	x = ft_printf("{%-13p}", &strlen);
+	x = ft_printf("%03p", 0);
+	printf("%d\n", x); 
+
+	printf("==TEST_99==\n");
+	x = printf("%#o", 0);
+	printf("%d\n", x); 
+	x = ft_printf("%#o", 0);
 	printf("%d\n", x); 
 
 	return (0);

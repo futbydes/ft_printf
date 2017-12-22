@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 16:21:39 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 15:11:16 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 17:36:53 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char		*presc_conv(t_flg *lst, char *t, t_or *u)
 
 	*t == '-' ? lst->sign = 1 : 0;
 	x = lst->prc - (int)ft_strlen(t);
+	if ((lst->type == 'o' || lst->type == 'O') && (1 == lst->oct && u->s == 0))
+		return (t);
 	if (0 == lst->prc && u->s == 0)
 		return (t = ft_memalloc(0));
 	if (('s' == lst->type || 'S' == lst->type) && x < 0)
@@ -67,7 +69,7 @@ char		*presc_conv(t_flg *lst, char *t, t_or *u)
 char		*ft_format_str(t_flg *lst, char *t, t_or *u)
 {
 	*t == '-' ? (lst->sign = 1) : 0;
-//	printf("::::1::::::%s\n", t);
+	//printf("::::1::::::%s\n", t);
 	lst->zero == 1 ? t = ft_format_zero(lst, t) : 0;
 //	printf("::::1::::::%s\n", t);
 	lst->sps == 1 ? t = ft_addspace(lst, t) : 0;
