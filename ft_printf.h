@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:22:32 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 11:08:35 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 17:48:11 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void	ft_strctn(t_flg *lst);
 char	*ft_realloc(char **arr, int size, t_flg *lst);
 char	*ft_format_str(t_flg *lst, char *t, t_or *u);
 char	*ft_addspace(t_flg *lst, char *t);
-char	*ft_format_zero(t_flg *lst, char *t);
+char	*ft_format_zero(t_flg *lst, char *t, t_or *u);
 char	*ft_addsign(t_flg *lst, char *t, t_or *u);
-int		ft_addsign_condition(t_flg *lst, char *t);
+int		ft_addsign_condition(t_flg *lst, char *t, t_or *u);
 char	*alignment_mfw(t_flg *lst, char *t);
 char	*ft_unicon(t_flg *lst, t_or *u);
 wchar_t		ft_unicon_conv(wchar_t c);

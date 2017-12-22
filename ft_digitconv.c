@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 16:21:39 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 17:36:53 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 19:50:32 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,10 @@ char		*presc_conv(t_flg *lst, char *t, t_or *u)
 	x = lst->prc - (int)ft_strlen(t);
 	if ((lst->type == 'o' || lst->type == 'O') && (1 == lst->oct && u->s == 0))
 		return (t);
-	if (0 == lst->prc && u->s == 0)
+	else if (0 == lst->prc && u->s == 0 && lst->type != '%')
 		return (t = ft_memalloc(0));
-	if (('s' == lst->type || 'S' == lst->type) && x < 0)
-		t = ft_realloc(&t, x, lst);
 	else if (x >= 0 && 's' != lst->type && 'S' != lst->type &&
-			lst->type != 'c' && lst->type != 'C')
+			lst->type != 'c' && lst->type != 'C' && lst->type != '%')
 	{
 		p = ft_realloc(&t, x, lst);
 		temp = p;
@@ -63,14 +61,17 @@ char		*presc_conv(t_flg *lst, char *t, t_or *u)
 		temp = ft_memset(temp, '0', (lst->sign == 1 ? x + 1 : x));
 		return (temp);
 	}
+	else if (('s' == lst->type || 'S' == lst->type) && x < 0)
+		t = ft_realloc(&t, x, lst);
+	lst->type == '%' ? lst->prc = -1 : 0;
 	return (t);
 }
 
 char		*ft_format_str(t_flg *lst, char *t, t_or *u)
 {
 	*t == '-' ? (lst->sign = 1) : 0;
-	//printf("::::1::::::%s\n", t);
-	lst->zero == 1 ? t = ft_format_zero(lst, t) : 0;
+//	printf("::::1::::::%s\n", t);
+	lst->zero == 1 ? t = ft_format_zero(lst, t, u) : 0;
 //	printf("::::1::::::%s\n", t);
 	lst->sps == 1 ? t = ft_addspace(lst, t) : 0;
 //	printf("::::1::::::%s\n", t);

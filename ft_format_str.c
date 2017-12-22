@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 10:28:14 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 17:34:07 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 19:56:39 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,20 @@ char		*ft_addspace(t_flg *lst, char *t)
 		return (t);
 }
 
-char		*ft_format_zero(t_flg *lst, char *t)
+char		*ft_format_zero(t_flg *lst, char *t, t_or *u)
 {
 	char	*new;
 	char	*temp;
 	int		x;
 
 	x = lst->m_fw - ((lst->type == 'C' || lst->type == 'c') ? 1 : ft_strlen(t));
+	lst->sps == 1 ? x-- : 0;
 	lst->type == 'p' ? x -= 2 : 0; /*p kostyl' dlya 0x */
-	if (x > 0 && lst->oct == 1 && ft_addsign_condition(lst, t))
+	if (x > 0 && lst->oct == 1 && ft_addsign_condition(lst, t, u))
 		(lst->type == 'x' || lst->type == 'X') ? (x -= 2) : (x -= 1);
 	if (x > -1 && lst->m_fw > 0 && lst->minus == 0 && lst->prc < lst->m_fw &&
-				(lst->prc < 0 || lst->type == 's' || lst->type == 'S'))
+				(lst->prc < 0 || lst->type == 's' || lst->type == 'S' ||
+				 lst->type == 'C' || lst->type == 'c' || lst->type == 0))
 	{
 		new = ft_realloc(&t, (lst->sign > 0 ? (x - 1) : x), lst);
 		temp = new;
@@ -60,17 +62,14 @@ char		*ft_addsign(t_flg *lst, char *t, t_or *u)
 	char	*temp2;
 	char	*new;
 
-	if (ft_addsign_condition(lst, t))
+	if (ft_addsign_condition(lst, t, u))
 	{
-		if (u->arr == 0 && (lst->type == 'x' || lst->type == 'X' ||
-					lst->type == 'o' || lst->type == 'O'))
-			return (t);
 		temp = ft_memalloc(3);
 		temp[0] = '0';
 		if (lst->type == 'x' || lst->type == 'X' || lst->type == 'p')
 			temp[1] = 'X';
 		lst->sign == 1 ? temp[0] = '-' : 0;
-		if (lst->plus == 1 && lst->sign != 1 &&
+		if (lst->plus == 1 && lst->sign == 2 &&
 				(lst->type == 'd' || lst->type == 'i' || lst->type == 'D'))
 			temp[0] = '+';
 		new = ft_realloc(&t, ft_strlen(temp), lst);
@@ -111,12 +110,12 @@ char		*alignment_mfw(t_flg *lst, char *t)
 	return (t);
 }
 
-int			ft_addsign_condition(t_flg *lst, char *t)
+int			ft_addsign_condition(t_flg *lst, char *t, t_or *u)
 {
-	if ((lst->type == 'p' || lst->type == 'x' || lst->type == 'X' ||
-			lst->type == 'o' || lst->type == 'O' || ((lst->type == 'd' ||
-					lst->type == 'i' || lst->type == 'D') && lst->sign > 0)) &&
-			*t != '-')
+	if ((lst->type == 'p' || ((lst->type == 'x' || lst->type == 'X' ||
+			lst->type == 'o' || lst->type == 'O') && u->arr != 0 && lst->oct) ||
+				((lst->type == 'd' || lst->type == 'i' || lst->type == 'D') &&
+				 lst->sign > 0)) && *t != '-')
 		return (1);
 	else
 		return (0);

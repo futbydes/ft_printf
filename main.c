@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 17:39:09 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 19:47:39 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,8 +303,8 @@ int		main(void)
 	ft_printf("sf423%s234al1%1+#x\n", "boom", -423423);
 
 	printf("==TEST_66==\n");
-	printf("%1+#x\n", "boom");
-	ft_printf("%1+#x\n", "boom");
+	printf("%#+x\n", "boom");
+	ft_printf("%#+x\n", "boom");
 
 	printf("==TEST_67==\n");
 	x = printf("%1+#.s\n", "boom");
@@ -555,6 +555,40 @@ int		main(void)
 	x = printf("%#o", 0);
 	printf("%d\n", x); 
 	x = ft_printf("%#o", 0);
+	printf("%d\n", x); 
+
+	printf("==TEST_100==\n");
+	x = printf("%+o\n", 42);
+//	x = printf("%#+o\n", 4242343);
+	x = ft_printf("%+o\n", 42);
+//	x = ft_printf("%#+o\n", 4242343);
+
+	printf("==TEST_100==\n");
+	x = printf("% 03d", 0);
+	printf("%d\n", x); 
+	x = ft_printf("% 03d", 0);
+	printf("%d\n", x); 
+
+	printf("==TEST_100==\n");
+	x = printf("%05.c", 0);
+	printf("%d\n", x); 
+	x = ft_printf("%05.c", 0);
+	printf("%d\n", x); 
+
+	printf("==TEST_100==\n");
+	x = printf("%.%\n", 0);
+	x = ft_printf("%.3%\n", 0);
+	x = printf("%05.6%\n", 0);
+	x = ft_printf("%05.6%\n", 0);
+//	printf("%d\n", x); 
+//	x = ft_printf("%.3%", 0);
+//	x = ft_printf("%05.%", 0);
+//	printf("%d\n", x); 
+
+	printf("==TEST_100==\n");
+	x = printf("%05.Z", 0);
+	printf("%d\n", x); 
+	x = ft_printf("%05.Z", 0);
 	printf("%d\n", x); 
 
 	return (0);
