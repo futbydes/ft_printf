@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 16:22:38 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 19:47:55 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 21:10:21 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ char		*print_operate(char **spec, va_list pt, t_flg *lst)
 		return (t);
 	}
 	u = ft_memalloc(sizeof(t_or));
-	type_conv_uors(lst) ? u->us = type_conv_u(lst, pt, u) :
+	type_conv_uors(lst) ? type_conv_u(lst, pt, u) :
 		type_conv_s(lst, pt, u);
 	t = digit_conv(lst, u);
-//	printf("::::::%s\n", t);
+	//printf("::::::%s\n", t);
 	lst->prc > -1 ? t = presc_conv(lst, t, u) : 0;
 //	printf("::::::%s\n", t);
 	t = ft_format_str(lst, t, u);

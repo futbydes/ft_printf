@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 16:21:39 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 19:50:32 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 20:55:16 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ char		*presc_conv(t_flg *lst, char *t, t_or *u)
 
 	*t == '-' ? lst->sign = 1 : 0;
 	x = lst->prc - (int)ft_strlen(t);
-	if ((lst->type == 'o' || lst->type == 'O') && (1 == lst->oct && u->s == 0))
+	if ((lst->type == 'o' || lst->type == 'O') && (1 == lst->oct && x-- &&
+				lst->prc == 0))
 		return (t);
 	else if (0 == lst->prc && u->s == 0 && lst->type != '%')
 		return (t = ft_memalloc(0));

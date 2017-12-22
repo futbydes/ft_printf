@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:22:32 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 17:48:11 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 21:24:40 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	size_check_hl(char **spec, t_flg *flags);
 void	size_check_jz(char **spec, t_flg *flags);
 int		size_check(char **spec, t_flg *flags);
 int		type_check(char **spec, t_flg *flags);
-uintmax_t	type_conv_u(t_flg *flags, va_list pt, t_or *u);
+void	type_conv_u(t_flg *flags, va_list pt, t_or *u);
 void	type_conv_s(t_flg *flags, va_list pt, t_or *u);
 int		type_conv_uors(t_flg *f);
 char	*digit_conv(t_flg *flags, t_or *u);
@@ -79,7 +79,7 @@ int		ft_addsign_condition(t_flg *lst, char *t, t_or *u);
 char	*alignment_mfw(t_flg *lst, char *t);
 char	*ft_unicon(t_flg *lst, t_or *u);
 wchar_t		ft_unicon_conv(wchar_t c);
-char        *ft_unicon_arr(t_or *u);
+char        *ft_unicon_arr(t_or *u, t_flg *lst);
 char	*ft_null_arr(t_flg *lst, char *t);
 int		ft_atoi(const char *str);
 void	*ft_memalloc(size_t size);

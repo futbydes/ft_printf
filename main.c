@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 19:47:39 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 21:42:11 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -542,7 +542,7 @@ int		main(void)
 	printf("==TEST_99==\n");
 	x = printf("%ls", L"暖炉");
 	printf("%d\n", x); 
-//	x = ft_printf("%ls", L"暖炉");
+	x = ft_printf("%ls", L"暖炉");
 	printf("%d\n", x); 
 
 	printf("==TEST_99==\n");
@@ -590,6 +590,22 @@ int		main(void)
 	printf("%d\n", x); 
 	x = ft_printf("%05.Z", 0);
 	printf("%d\n", x); 
+
+	printf("==TEST_100==\n");
+	x = printf("%#.5o", 1012);
+	printf("%d\n", x); 
+	x = ft_printf("%#.5o", 1012);
+	printf("%d\n", x); 
+
+	printf("==TEST_100==\n");
+	x = printf("%.5S", L"我是一只猫。");
+	printf("%d\n", x); 
+	x = ft_printf("%.5S", L"我是一只猫。");
+	printf("%d\n", x); 
+	/*
+	 * 
+	 *как изменить юникод из структуры на юнион?
+	 */
 
 	return (0);
 }

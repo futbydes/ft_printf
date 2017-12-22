@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 10:28:14 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 19:56:39 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 20:35:18 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ char		*alignment_mfw(t_flg *lst, char *t)
 int			ft_addsign_condition(t_flg *lst, char *t, t_or *u)
 {
 	if ((lst->type == 'p' || ((lst->type == 'x' || lst->type == 'X' ||
-			lst->type == 'o' || lst->type == 'O') && u->arr != 0 && lst->oct) ||
-				((lst->type == 'd' || lst->type == 'i' || lst->type == 'D') &&
-				 lst->sign > 0)) && *t != '-')
+			lst->type == 'o' || lst->type == 'O') && u->arr != 0 &&
+			lst->oct == 1) || ((lst->type == 'd' || lst->type == 'i' ||
+			lst->type == 'D') && lst->sign > 0)) && *t != '-')
 		return (1);
 	else
 		return (0);

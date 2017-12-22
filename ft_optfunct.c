@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 15:12:17 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/22 21:44:14 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,20 @@ char			*ft_unicon(t_flg *lst,  t_or *u)
 		{
 			u->wct = ft_unicon_conv(*(lst->awct)++);
 			t = ft_realloc(&(t), 4, lst);
-			temp = ft_unicon_arr(u);
+			if ((temp = ft_unicon_arr(u, lst)) && (*temp == 0))
+				return (t);
 			ft_memcpy(t + ft_strlen(t), temp, 4);
 		}
 	} 
 	if (lst->type == 'C' || lst->type == 'c')
 	{
 		u->wct = ft_unicon_conv(u->wct);
-		t = ft_unicon_arr(u);
+		t = ft_unicon_arr(u, lst);
 	}
 	return (t);
 }
 
-char		*ft_unicon_arr(t_or *u)
+char		*ft_unicon_arr(t_or *u, t_flg *lst)
 {
 	char	*arr;
 	int		x;
@@ -64,6 +65,12 @@ char		*ft_unicon_arr(t_or *u)
 		((unsigned int)u->wct > 16777215);
 	y = 0;
 	arr = ft_memalloc(x);
+	if (lst->prc != -1)
+	{
+		lst->prc -= x;
+		if (lst->prc < 0)
+			return (arr);
+	}
 	while (x--)
 		arr[y++] = u->byte[x];
 	return (arr);
