@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 16:21:39 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/23 11:14:47 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/23 11:41:42 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ char		*digit_conv(t_flg *flags, t_or *u)
 			flags->awct == 0)
 		t = ft_null_arr(flags, t);
 	else if (flags->type == 's' && 3 != flags->size)
-	{
-		t = ft_memalloc(ft_strlen(u->arr));
-		t = ft_strcpy(t, u->arr);
-	}
+		t = ft_realloc(&(u->arr), 0, u);
 	else if ((flags->type == 's' && 3 == flags->size) || flags->type == 'S')
 		t = ft_unicon(flags, u);
 	return (t);
@@ -58,14 +55,14 @@ char		*presc_conv(t_flg *lst, char *t, t_or *u)
 	else if (x >= 0 && 's' != lst->type && 'S' != lst->type &&
 			lst->type != 'c' && lst->type != 'C' && lst->type != '%')
 	{
-		p = ft_realloc(&t, x, lst);
+		p = ft_realloc(&t, x, u);
 		temp = p;
 		ft_memmove(p + x, p, ft_strlen(p));
 		temp = ft_memset(temp, '0', (lst->sign == 1 ? x + 1 : x));
 		return (temp);
 	}
 	else if (('s' == lst->type || 'S' == lst->type) && x < 0)
-		t = ft_realloc(&t, x, lst);
+		t = ft_realloc(&t, x, u);
 	lst->type == '%' ? lst->prc = -1 : 0;
 	return (t);
 }
@@ -76,14 +73,14 @@ char		*ft_format_str(t_flg *lst, char *t, t_or *u)
 //	printf("::::1::::::%s\n", t);
 	lst->zero == 1 ? t = ft_format_zero(lst, t, u) : 0;
 //	printf("::::1::::::%s\n", t);
-	lst->sps == 1 ? t = ft_addspace(lst, t) : 0;
+	lst->sps == 1 ? t = ft_addspace(lst, t, u) : 0;
 //	printf("::::1::::::%s\n", t);
 	if (lst->sign > 0 || lst->oct == 1 || lst->type == 'p' ||
 			lst->plus == 1)
 		t = ft_addsign(lst, t, u);
 //	printf("::::1::::::%s\n", t);
 	if (lst->minus == 1 || lst->m_fw > (int)ft_strlen(t))
-		t = alignment_mfw(lst, t);
+		t = alignment_mfw(lst, t, u);
 	if (lst->type == 'p' || (lst->type == 'x'))
 		t = ft_lowcasealph(&t);
 	if ((lst->type == 'C' || lst->type == 'c') && *t == 0 && lst->minus == 1)

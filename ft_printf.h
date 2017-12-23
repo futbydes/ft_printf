@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:22:32 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/23 11:01:47 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/23 11:28:02 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ int		type_conv_sflgs(t_flg *f);
 char	*presc_conv(t_flg *flags, char *t, t_or *u);
 int		presc_flgs(t_flg *flags);
 void	ft_strctn(t_flg *lst);
-char	*ft_realloc(char **arr, int size, t_flg *lst);
+char	*ft_realloc(char **arr, int size, t_or *u);
 char	*ft_format_str(t_flg *lst, char *t, t_or *u);
-char	*ft_addspace(t_flg *lst, char *t);
+char	*ft_addspace(t_flg *lst, char *t, t_or *u);
 char	*ft_format_zero(t_flg *lst, char *t, t_or *u);
 char	*ft_addsign(t_flg *lst, char *t, t_or *u);
 int		ft_addsign_condition(t_flg *lst, char *t, t_or *u);
-char	*alignment_mfw(t_flg *lst, char *t);
+char	*alignment_mfw(t_flg *lst, char *t, t_or *u);
 char	*ft_unicon(t_flg *lst, t_or *u);
 wchar_t		ft_unicon_conv(wchar_t c);
 char        *ft_unicon_arr(t_or *u, t_flg *lst);

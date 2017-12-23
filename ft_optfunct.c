@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/23 11:20:07 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/23 11:39:59 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char			*ft_realloc(char **arr, int size, t_flg *lst)
+char			*ft_realloc(char **arr, int size, t_or *u)
 {
 	char		*new;
 	int			len;
@@ -24,7 +24,7 @@ char			*ft_realloc(char **arr, int size, t_flg *lst)
 	len = ft_strlen(*arr);
 	new = ft_memalloc((len + size) + 1);
 	new = ft_memcpy(new, *arr, len + size);
-	if (*arr != 0 && lst->type != 'S' && lst->type != 's')
+	if (arr != 0 && &(u->arr) != arr)
 		free(*arr);
 	return (new);
 }
@@ -33,6 +33,7 @@ char			*ft_unicon(t_flg *lst,  t_or *u)
 {
 	char		*t;
 	char		*temp;
+	int			x;
 
 	if (lst->type == 'S' || lst->type == 's')
 	{
@@ -40,10 +41,12 @@ char			*ft_unicon(t_flg *lst,  t_or *u)
 		while (*lst->awct)
 		{
 			u->wct = ft_unicon_conv(*(lst->awct)++);
-			t = ft_realloc(&(t), 4, lst);
+			x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct >
+					65535) + ((unsigned int)u->wct > 16777215);
+			t = ft_realloc(&(t), x, u);
 			if ((temp = ft_unicon_arr(u, lst)) && (*temp == 0))
 				return (t);
-			ft_memcpy(t + ft_strlen(t), temp, 4);
+			ft_memcpy(t + ft_strlen(t), temp, x);
 		}
 	} 
 	if (lst->type == 'C' || lst->type == 'c')

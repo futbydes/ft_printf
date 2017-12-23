@@ -6,21 +6,21 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 10:28:14 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/23 11:01:37 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/23 11:29:14 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-char		*ft_addspace(t_flg *lst, char *t)
+char		*ft_addspace(t_flg *lst, char *t, t_or *u)
 {
 	char	*new;
 
 	if (lst->sign == 0 && lst->plus == 0 && (lst->type == 'd' ||
 				lst->type == 'D' || lst->type == 'i'))
 	{
-		new = ft_realloc(&t, ft_strlen(t) + 1, lst);
+		new = ft_realloc(&t, ft_strlen(t) + 1, u);
 		ft_memmove(new + 1, new, ft_strlen(new));
 		new[0] = ' ';
 		return (new);
@@ -44,7 +44,7 @@ char		*ft_format_zero(t_flg *lst, char *t, t_or *u)
 				(lst->prc < 0 || lst->type == 's' || lst->type == 'S' ||
 				 lst->type == 'C' || lst->type == 'c' || lst->type == 0))
 	{
-		new = ft_realloc(&t, (lst->sign > 0 ? (x - 1) : x), lst);
+		new = ft_realloc(&t, (lst->sign > 0 ? (x - 1) : x), u);
 		temp = new;
 		ft_memmove(new + (lst->sign > 0 ? (x - 1) : x), new, ft_strlen(new));
 		temp = ft_memset(temp, '0', (lst->sign == 2 ? (x - 1) : x));
@@ -72,7 +72,7 @@ char		*ft_addsign(t_flg *lst, char *t, t_or *u)
 		if (lst->plus == 1 && lst->sign == 2 &&
 				(lst->type == 'd' || lst->type == 'i' || lst->type == 'D'))
 			temp[0] = '+';
-		new = ft_realloc(&t, ft_strlen(temp), lst);
+		new = ft_realloc(&t, ft_strlen(temp), u);
 		temp2 = new;
 		ft_memmove(new + ft_strlen(temp), new, ft_strlen(new));
 		ft_memcpy(temp2, temp, ft_strlen(temp));
@@ -83,7 +83,7 @@ char		*ft_addsign(t_flg *lst, char *t, t_or *u)
 		return (t);
 }
 
-char		*alignment_mfw(t_flg *lst, char *t)
+char		*alignment_mfw(t_flg *lst, char *t, t_or *u)
 {
 	char	*new;
 	int		x;
@@ -92,7 +92,7 @@ char		*alignment_mfw(t_flg *lst, char *t)
 	if (((lst->m_fw > lst->prc) || ('c' == lst->type || 's' == lst->type ||
 			'S' == lst->type || 'C' == lst->type)) && x > 0 && lst->minus == 0)
 	{
-		new = ft_realloc(&t, x, lst);
+		new = ft_realloc(&t, x, u);
 		t = new;
 		if (('c' == lst->type || 'C' == lst->type) && ft_strlen(new) == 0)
 			(ft_memmove(new + x, new, 1) && x--);
@@ -102,7 +102,7 @@ char		*alignment_mfw(t_flg *lst, char *t)
 	}
 	else if (lst->minus == 1 && lst->m_fw > 0 && lst->m_fw > lst->prc && x > -1)
 	{
-		new = ft_realloc(&t, x, lst);
+		new = ft_realloc(&t, x, u);
 		t = new;
 		new = ft_memset(new + (('c' == lst->type || 'C' == lst->type) &&
 						ft_strlen(t) == 0 ? 1 : ft_strlen(t)), ' ', x);
