@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 21:42:11 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/23 12:48:01 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(void)
 	wchar_t	wc = 0;
 	wchar_t	*awc = 0;
 
-	setlocale(LC_ALL, "");
+//	setlocale(LC_ALL, "");
 	
 	printf("==TEST_1==\n");
 	printf("%d\n", x);
@@ -601,6 +601,18 @@ int		main(void)
 	x = printf("%.5S", L"我是一只猫。");
 	printf("%d\n", x); 
 	x = ft_printf("%.5S", L"我是一只猫。");
+	printf("%d\n", x); 
+
+	printf("==TEST_100==\n");
+	x = printf("% 4i", 42);
+	printf("%d\n", x); 
+	x = ft_printf("% 4i", 42);
+	printf("%d\n", x); 
+
+	printf("==TEST_101==\n");
+	x = printf("%s\n", "Lalalala, 100% des gens qui parlent 只猫 Ly adorent Ly. Ou Presque. 2, 10, 2710,");
+	printf("%d\n", x); 
+	x = ft_printf("%s\n", "Lalalala, 100% des gens qui parlent 只猫 Ly adorent Ly. Ou Presque. 2, 10, 2710,");
 	printf("%d\n", x); 
 	/*
 	 * 
