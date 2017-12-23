@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/23 11:39:59 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/23 11:44:22 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char			*ft_realloc(char **arr, int size, t_or *u)
 	return (new);
 }
 
-char			*ft_unicon(t_flg *lst,  t_or *u)
+char			*ft_unicon(t_flg *lst, t_or *u)
 {
 	char		*t;
 	char		*temp;
@@ -48,7 +48,7 @@ char			*ft_unicon(t_flg *lst,  t_or *u)
 				return (t);
 			ft_memcpy(t + ft_strlen(t), temp, x);
 		}
-	} 
+	}
 	if (lst->type == 'C' || lst->type == 'c')
 	{
 		u->wct = ft_unicon_conv(u->wct);
@@ -57,12 +57,11 @@ char			*ft_unicon(t_flg *lst,  t_or *u)
 	return (t);
 }
 
-char		*ft_unicon_arr(t_or *u, t_flg *lst)
+char			*ft_unicon_arr(t_or *u, t_flg *lst)
 {
-	char	*arr;
-	int		x;
-	int		y;
-
+	char		*arr;
+	int			x;
+	int			y;
 
 	x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct > 65535) +
 		((unsigned int)u->wct > 16777215);
@@ -79,9 +78,9 @@ char		*ft_unicon_arr(t_or *u, t_flg *lst)
 	return (arr);
 }
 
-wchar_t		ft_unicon_conv(wchar_t c)
+wchar_t			ft_unicon_conv(wchar_t c)
 {
-	wchar_t res;
+	wchar_t		res;
 
 	if ((int)c <= 127)
 		return (res = c);
