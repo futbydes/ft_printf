@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/23 11:44:22 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/23 12:25:20 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ char			*ft_realloc(char **arr, int size, t_or *u)
 	char		*new;
 	int			len;
 
+//	printf("::realloc:addr:::%p\n", *arr);
+//	printf("::realloc:addr:::%s\n", *arr);
 	if (!arr)
 		return (*arr);
 	len = ft_strlen(*arr);
 	new = ft_memalloc((len + size) + 1);
 	new = ft_memcpy(new, *arr, len + size);
-	if (arr != 0 && &(u->arr) != arr)
+	if (&(u->arr) != arr)
 		free(*arr);
 	return (new);
 }
@@ -66,6 +68,7 @@ char			*ft_unicon_arr(t_or *u, t_flg *lst)
 	x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct > 65535) +
 		((unsigned int)u->wct > 16777215);
 	y = 0;
+	MB_CUR_MAX < x ? x = MB_CUR_MAX : 0;
 	arr = ft_memalloc(x);
 	if (lst->prc != -1)
 	{
