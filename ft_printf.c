@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 16:22:38 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 21:10:21 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/23 11:19:17 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int			print_check(char **spec, va_list pt, int x)
 		//	printf(":::::::::::%s\n", t);
 			x += lst->btread;
 			write(1, &(*t), lst->btread);
+			free(t);
 			free(lst);
 		}
 		while (**spec != '%' && **spec != 0)
@@ -111,5 +112,6 @@ int		ft_printf(char *spec, ...)
 	while (*spec != 0)
 		x = print_check(&spec, pt, x);
 	va_end(pt);
+	//printf(":::ft_printf::::%p\n", &x);
 	return (x);
 }

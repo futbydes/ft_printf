@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 16:21:39 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 20:55:16 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/23 11:14:47 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,18 @@ char		*digit_conv(t_flg *flags, t_or *u)
 		t = ft_ib_u(u->us, 16);
 	if ((flags->type == 'c' && flags->size == 3) || flags->type == 'C')
 		t = ft_unicon(flags, u);
-	if (flags->type == 'c' && flags->size != 3)
-		t = ft_charr(u->uc);
+	if (flags->type == '%' || (flags->type == 'c' && flags->size != 3))
+		t = (flags->type == '%' ? ft_charr('%') : ft_charr(u->uc));
 	if ((flags->type == 's' || flags->type == 'S') && u->arr == 0 &&
 			flags->awct == 0)
 		t = ft_null_arr(flags, t);
 	else if (flags->type == 's' && 3 != flags->size)
-		t = u->arr;
+	{
+		t = ft_memalloc(ft_strlen(u->arr));
+		t = ft_strcpy(t, u->arr);
+	}
 	else if ((flags->type == 's' && 3 == flags->size) || flags->type == 'S')
 		t = ft_unicon(flags, u);
-	flags->type == '%' ? t = ft_charr('%') : 0;
 	return (t);
 }
 

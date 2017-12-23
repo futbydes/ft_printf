@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 21:44:14 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/23 11:20:07 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ char			*ft_realloc(char **arr, int size, t_flg *lst)
 	char		*new;
 	int			len;
 
-	if (!arr || !size)
+	if (!arr)
 		return (*arr);
 	len = ft_strlen(*arr);
 	new = ft_memalloc((len + size) + 1);
 	new = ft_memcpy(new, *arr, len + size);
-	if (*arr != 0 && lst->type != 's' && lst->type != 'S')
+	if (*arr != 0 && lst->type != 'S' && lst->type != 's')
 		free(*arr);
 	return (new);
 }
