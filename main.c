@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 11:54:55 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 12:43:46 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(void)
 	wchar_t	wc = 0;
 	wchar_t	*awc = 0;
 
-	setlocale(LC_ALL, "");
+//	setlocale(LC_ALL, "");
 	
 	printf("==TEST_1==\n");
 	printf("%d\n", x);
@@ -604,27 +604,24 @@ int		main(void)
 	printf("%d\n", x); 
 
 	printf("==TEST_100==\n");
-	x = printf("% 4i ", 42);
+	x = printf("% 4i", 12221);
 	printf("%d\n", x); 
-	x = ft_printf("% 4i ", 42);
+	x = ft_printf("% 4i", 12221);
 	printf("%d\n", x); 
 
+//	setlocale(LC_ALL, "");
 	printf("==TEST_101==\n");
-	x = printf("%s\n", "Lalalala, 100% des gens qui parlent 只猫 Ly adorent Ly. Ou Presque. 2, 10, 2710,");
+	x = printf("%s\n", "Lalalala, 100% des gens qui parlent 只 Ly adorent Ly. Ou Presque. 2, 10, 2710,");
 	printf("%d\n", x); 
-	x = ft_printf("%s\n", "Lalalala, 100% des gens qui parlent 只猫 Ly adorent Ly. Ou Presque. 2, 10, 2710,");
-	printf("%d\n", x); 
-
-	printf("==TEST_100==\n");
-	x = printf("% ");
-	printf("%d\n", x); 
-	x = printf("% h");
-	printf("%d\n", x); 
-	x = ft_printf("% ");
-	printf("%d\n", x); 
-	x = ft_printf("% h");
+	x = ft_printf("%s\n", "Lalalala, 100% des gens qui parlent 只 Ly adorent Ly. Ou Presque. 2, 10, 2710,");
 	printf("%d\n", x); 
 
+	x = printf("%      i\n", 42);
+	x = ft_printf("%      i\n", 42);
+    x = printf("% i\n", -42);
+    x = ft_printf("% i\n", -42);
+	x = printf("%- 4i\n", -42);
+	x = ft_printf("%- 4i\n", -42);
 
 	/*
 	 * 
