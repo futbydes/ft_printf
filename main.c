@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/23 13:00:32 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 11:25:26 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(void)
 	wchar_t	wc = 0;
 	wchar_t	*awc = 0;
 
-	setlocale(LC_ALL, "");
+//	setlocale(LC_ALL, "");
 	
 	printf("==TEST_1==\n");
 	printf("%d\n", x);
