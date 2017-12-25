@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 14:19:46 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 14:59:07 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(void)
 	wchar_t	wc = 0;
 	wchar_t	*awc = 0;
 
-//	setlocale(LC_ALL, "");
+	setlocale(LC_ALL, "");
 	
 	printf("==TEST_1==\n");
 	printf("%d\n", x);
@@ -609,7 +609,6 @@ int		main(void)
 	x = ft_printf("% 4i", 12221);
 	printf("%d\n", x); 
 
-//	setlocale(LC_ALL, "");
 	printf("==TEST_101==\n");
 	x = printf("%s\n", "Lalalala, 100% des gens qui parlent 只 Ly adorent Ly. Ou Presque. 2, 10, 2710,");
 	printf("%d\n", x); 
@@ -630,16 +629,18 @@ int		main(void)
 	printf("%d\n", x); 
 
 	printf("==TEST_98==\n");
-	x = printf("%C", L'猫');
-	printf("%d\n", x); 
-	x = ft_printf("%C", L'猫');
-	printf("%d\n", x); 
+	x = printf("%C\n", L'§');
+	x = ft_printf("%C\n", L'§');
 
-//	setlocale(LC_ALL, "");
 	printf("==TEST_98==\n");
 	x = printf("%s%C%s", "Lalalala, 100% des gens qui parlent Ly ", L'牐', "adorent Ly. Ou Presque. 2, 10, 2710");
 	printf("%d\n", x); 
 	x = ft_printf("%s%C%s", "Lalalala, 100% des gens qui parlent Ly ", L'牐', "adorent Ly. Ou Presque. 2, 10, 2710");
+	printf("%d\n", x); 
+
+	x = printf("or_just a text:%- +013d!\n", -42);
+	printf("%d\n", x); 
+	x = ft_printf("ft_just a text:%- +013d!\n", -42);
 	printf("%d\n", x); 
 
 	/*

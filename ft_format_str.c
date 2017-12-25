@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 10:28:14 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 12:57:45 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 14:57:41 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char		*ft_format_zero(t_flg *lst, char *t, t_or *u)
 	int		x;
 
 	x = lst->m_fw - ((lst->type == 'C' || lst->type == 'c') ? 1 : ft_strlen(t));
-	lst->sps == 1 ? x-- : 0;
+	(lst->sps == 1 && lst->sign == 0) ? x-- : 0;
 	lst->type == 'p' ? x -= 2 : 0; /*p kostyl' dlya 0x */
 	if (x > 0 && lst->oct == 1 && ft_addsign_condition(lst, t, u))
 		(lst->type == 'x' || lst->type == 'X') ? (x -= 2) : (x -= 1);
