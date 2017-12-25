@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 17:56:21 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 17:58:54 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char			*ft_unicon_arr(t_or *u, t_flg *lst)
 		((unsigned int)u->wct > 16777215);
 	y = 0;
 	if (lst->type == 'C' || lst->type == 'c')
-		MB_CUR_MAX < x ? x = 1 : 0;
+		MB_CUR_MAX == 1 ? x = 1 : 0;
 	arr = ft_memalloc(x);
 	if ((lst->prc > -1 && (lst->type == 's' || lst->type == 'S')) ||
 		   	((lst->prc > 0 && lst->m_fw <= lst->prc) && (lst->type == 'C' ||
@@ -93,7 +93,7 @@ wchar_t			ft_unicon_conv(wchar_t c, t_flg *lst)
 	if (MB_CUR_MAX > 1 || (lst->type == 'S' || lst->type == 's'))
 	{
 	if ((int)c <= 127)
-		return (res = (char)c);
+		return (res = c);
 	else if ((int)c <= 2047)
 		return (res = ((c & 0x3F) | 0xC080) | ((c & 0x7C0) << 2));
 	else if ((int)c <= 65535)
@@ -105,5 +105,5 @@ wchar_t			ft_unicon_conv(wchar_t c, t_flg *lst)
 	}
 	else
 		res = (char)c;
-	return (c);
+	return (res);
 }
