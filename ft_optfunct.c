@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 16:21:47 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 16:23:08 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ char			*ft_unicon_arr(t_or *u, t_flg *lst)
 	x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct > 65535) +
 		((unsigned int)u->wct > 16777215);
 	y = 0;
-//	if (lst->type == 'C' || lst->type == 'c')
-//		MB_CUR_MAX < x ? x = MB_CUR_MAX : 0;
+	if (lst->type == 'C' || lst->type == 'c')
+		MB_CUR_MAX < x ? x = MB_CUR_MAX : 0;
 	arr = ft_memalloc(x);
 	if (lst->prc != -1)
 	{
@@ -85,6 +85,7 @@ wchar_t			ft_unicon_conv(wchar_t c, t_flg *lst)
 {
 	wchar_t		res;
 
+	res = 0;
 	if (MB_CUR_MAX > 1 || (lst->type == 'S' || lst->type == 's'))
 	{
 	if ((int)c <= 127)
@@ -98,5 +99,5 @@ wchar_t			ft_unicon_conv(wchar_t c, t_flg *lst)
 		return (res = ((((c & 0x3F) | 0xF0808080) | ((c & 0xFC0) << 2)) |
 					((c & 0x3F000) << 4) | ((c & 0xFC0000) << 3)));
 	}
-	return (c);
+	return (res);
 }
