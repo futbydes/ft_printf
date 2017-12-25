@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 16:21:39 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/23 11:41:42 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 11:58:34 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char		*digit_conv(t_flg *flags, t_or *u)
 {
 	char	*t;
 
+	flags->type == 0 ? t = ft_memalloc(0) : 0;
 	if (flags->type == 'd' || flags->type == 'D' || 'i' == flags->type)
 		t = ft_ib_s(u->s, 10);
 	if (flags->type == 'o' || flags->type == 'O')
