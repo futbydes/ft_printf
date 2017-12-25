@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 13:53:46 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 14:02:22 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -633,6 +633,12 @@ int		main(void)
 	x = printf("%C", L'猫');
 	printf("%d\n", x); 
 	x = ft_printf("%C", L'猫');
+	printf("%d\n", x); 
+
+	printf("==TEST_98==\n");
+	x = printf("%s", "Lalalala, 100% des gens qui parlent Ly 猫adorent Ly. Ou Presque. 2, 10, 2710");
+	printf("%d\n", x); 
+	x = printf("%s", "Lalalala, 100% des gens qui parlent Ly 猫adorent Ly. Ou Presque. 2, 10, 2710");
 	printf("%d\n", x); 
 
 	/*
