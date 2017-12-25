@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 17:41:54 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 18:10:37 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -643,7 +643,7 @@ int		main(void)
 	printf("%4.1S\n", L"Jambon");
 	ft_printf("%4.1S\n", L"Jambon");
 */
-	setlocale(LC_ALL, "");
+//	setlocale(LC_ALL, "");
 	printf("::%5.C\n", L'牐');
 	printf("::%5.3C\n", L'😆');
 	printf("::%.C\n", L'⟵');
