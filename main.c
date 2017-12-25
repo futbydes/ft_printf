@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 14:59:07 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 16:07:17 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -642,6 +642,10 @@ int		main(void)
 	printf("%d\n", x); 
 	x = ft_printf("ft_just a text:%- +013d!\n", -42);
 	printf("%d\n", x); 
+	printf("%4.1S\n", L"Jambon");
+	ft_printf("%4.1S\n", L"Jambon");
+	printf("%C\n", L'我我');
+	ft_printf("%C\n", L'我我');
 
 	/*
 	 * 
