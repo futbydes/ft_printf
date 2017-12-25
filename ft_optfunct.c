@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 15:52:05 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 15:54:40 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ char			*ft_unicon(t_flg *lst, t_or *u)
 					65535) + ((unsigned int)u->wct > 16777215);
 			if (MB_CUR_MAX < x)
 			{
-				t = ft_realloc(&(t), x, u);
-				if ((temp = ft_unicon_arr(u, lst)) && (*temp == 0))
-					return (t);
-				ft_memcpy(t + ft_strlen(t), temp, x);
+					return (t--);
 			}
 				return (t);
 			t = ft_realloc(&(t), x, u);
