@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 10:28:14 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/23 11:57:01 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 12:57:45 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char		*ft_addspace(t_flg *lst, char *t, t_or *u)
 	if (lst->sign == 0 && lst->plus == 0 && (lst->type == 'd' ||
 				lst->type == 'D' || lst->type == 'i'))
 	{
-		new = ft_realloc(&t, ft_strlen(t) + 1, u);
+		new = ft_realloc(&t, 1, u);
 		ft_memmove(new + 1, new, ft_strlen(new));
 		new[0] = ' ';
 		return (new);
