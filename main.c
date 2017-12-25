@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 16:07:17 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 16:57:31 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ int		main(void)
 	char	c = 0;
 	wchar_t	wc = 0;
 	wchar_t	*awc = 0;
-
-	setlocale(LC_ALL, "");
-	
+/*
 	printf("==TEST_1==\n");
 	printf("%d\n", x);
 	ft_printf("%d\n", x);
@@ -644,9 +642,21 @@ int		main(void)
 	printf("%d\n", x); 
 	printf("%4.1S\n", L"Jambon");
 	ft_printf("%4.1S\n", L"Jambon");
-	printf("%C\n", L'我我');
-	ft_printf("%C\n", L'我我');
+*/
+	setlocale(LC_ALL, "");
+	printf("::%5.C\n", L'牐');
+	printf("::%5.3C\n", L'😆');
+	printf("::%.C\n", L'⟵');
+	printf("::%6C\n", L'ᵪ');
+	printf("::%.3C\n", L'ࡧ');
+	ft_printf("%5.C\n", L'牐');
+	ft_printf("%5.3C\n", L'😆');
+	ft_printf("%.C\n", L'⟵');
+	ft_printf("%6C\n", L'ᵪ');
+	ft_printf("%3.C\n", L'ࡧ');
 
+	printf("::::::::%4.15S\n", L"我是一只我是一只");
+	ft_printf(":::s::::%4.15S\n", L"我是一只我是一只");
 	/*
 	 * 
 	 *как изменить юникод из структуры на юнион?
