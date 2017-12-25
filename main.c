@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 13:37:07 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 13:53:46 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -627,6 +627,12 @@ int		main(void)
 	x = printf("% 4i%s%C%d%S", 12221, "dsddss", L'只', 324, L"我是一只");
 	printf("%d\n", x); 
 	x = ft_printf("% 4i%s%C%d%S", 12221, "dsddss", L'只', 324, L"我是一只");
+	printf("%d\n", x); 
+
+	printf("==TEST_98==\n");
+	x = printf("%C", L'猫');
+	printf("%d\n", x); 
+	x = ft_printf("%C", L'猫');
 	printf("%d\n", x); 
 
 	/*
