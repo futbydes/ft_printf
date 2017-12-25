@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 15:29:18 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 15:36:01 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ char			*ft_unicon(t_flg *lst, t_or *u)
 			u->wct = ft_unicon_conv(*(lst->awct)++);
 			x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct >
 					65535) + ((unsigned int)u->wct > 16777215);
-			if (MB_CUR_MAX < x)
-				return (t);
 			t = ft_realloc(&(t), x, u);
 			if ((temp = ft_unicon_arr(u, lst)) && (*temp == 0))
 				return (t);
@@ -68,9 +66,8 @@ char			*ft_unicon_arr(t_or *u, t_flg *lst)
 	x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct > 65535) +
 		((unsigned int)u->wct > 16777215);
 	y = 0;
-	if (MB_CUR_MAX < x)
-			return (arr);
-	MB_CUR_MAX < x ? x = MB_CUR_MAX : 0;
+	if (lst->type == 'C' || lst->type == 'c')
+		MB_CUR_MAX < x ? x = MB_CUR_MAX : 0;
 	arr = ft_memalloc(x);
 	if (lst->prc != -1)
 	{
@@ -89,12 +86,12 @@ wchar_t			ft_unicon_conv(wchar_t c)
 
 	if ((int)c <= 127)
 		return (res = c);
-	else if ((int)c <= 2047 && MB_CUR_MAX >= 2)
+	else if ((int)c <= 2047)
 		return (res = ((c & 0x3F) | 0xC080) | ((c & 0x7C0) << 2));
-	else if ((int)c <= 65535 && MB_CUR_MAX >= 3)
+	else if ((int)c <= 65535)
 		return (res = (((c & 0x3F) | 0xE08080) | ((c & 0xFC0) << 2)) |
 				((c & 0xF000) << 4));
-	else if ((int)c >= 65536 && MB_CUR_MAX >= 4)
+	else if ((int)c >= 65536)
 		return (res = ((((c & 0x3F) | 0xF0808080) | ((c & 0xFC0) << 2)) |
 					((c & 0x3F000) << 4) | ((c & 0xFC0000) << 3)));
 	else
