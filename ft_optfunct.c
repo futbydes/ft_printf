@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 13:51:19 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 13:54:57 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ char			*ft_realloc(char **arr, int size, t_or *u)
 	char		*new;
 	int			len;
 
-//	printf("::realloc:addr:::%p\n", *arr);
-//	printf("::realloc:addr:::%s\n", *arr);
 	if (!arr)
 		return (*arr);
 	len = ft_strlen(*arr);
@@ -45,6 +43,8 @@ char			*ft_unicon(t_flg *lst, t_or *u)
 			u->wct = ft_unicon_conv(*(lst->awct)++);
 			x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct >
 					65535) + ((unsigned int)u->wct > 16777215);
+			if (MB_CUR_MAX < x)
+				return (t);
 			t = ft_realloc(&(t), x, u);
 			if ((temp = ft_unicon_arr(u, lst)) && (*temp == 0))
 				return (t);
@@ -92,9 +92,9 @@ wchar_t			ft_unicon_conv(wchar_t c)
 	else if ((int)c <= 65535 && MB_CUR_MAX >= 3)
 		return (res = (((c & 0x3F) | 0xE08080) | ((c & 0xFC0) << 2)) |
 				((c & 0xF000) << 4));
-	else if ((int)c >= 131071 && MB_CUR_MAX >= 4)
+	else if (MB_CUR_MAX >= 4)
 		return (res = ((((c & 0x3F) | 0xF0808080) | ((c & 0xFC0) << 2)) |
 					((c & 0x3F000) << 4) | ((c & 0xFC0000) << 3)));
 	else
-		return (0);
+		return (c);
 }
