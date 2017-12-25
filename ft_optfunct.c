@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 15:41:11 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 15:43:30 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char			*ft_unicon(t_flg *lst, t_or *u)
 		t = ft_memalloc(0);
 		while (*lst->awct)
 		{
-			u->wct = ft_unicon_conv(*(lst->awct)++);
+			u->wct = ft_unicon_conv(*(lst->awct)++, lst);
 			x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct >
 					65535) + ((unsigned int)u->wct > 16777215);
 			t = ft_realloc(&(t), x, u);
@@ -51,7 +51,7 @@ char			*ft_unicon(t_flg *lst, t_or *u)
 	}
 	if (lst->type == 'C' || lst->type == 'c')
 	{
-		u->wct = ft_unicon_conv(u->wct);
+		u->wct = ft_unicon_conv(u->wct, lst);
 		t = ft_unicon_arr(u, lst);
 	}
 	return (t);
@@ -80,7 +80,7 @@ char			*ft_unicon_arr(t_or *u, t_flg *lst)
 	return (arr);
 }
 
-wchar_t			ft_unicon_conv(wchar_t c)
+wchar_t			ft_unicon_conv(wchar_t c, t_flg *lst)
 {
 	wchar_t		res;
 
@@ -97,6 +97,5 @@ wchar_t			ft_unicon_conv(wchar_t c)
 		return (res = ((((c & 0x3F) | 0xF0808080) | ((c & 0xFC0) << 2)) |
 					((c & 0x3F000) << 4) | ((c & 0xFC0000) << 3)));
 	}
-	else
-		return (c);
+	return (c);
 }
