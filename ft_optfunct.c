@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 16:12:04 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 16:12:44 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ char			*ft_unicon(t_flg *lst, t_or *u)
 		t = ft_memalloc(0);
 		while (*lst->awct)
 		{
-			if (MB_CUR_MAX < x)
-				return (t);
 			u->wct = ft_unicon_conv(*(lst->awct)++, lst);
 			x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct >
 					65535) + ((unsigned int)u->wct > 16777215);
