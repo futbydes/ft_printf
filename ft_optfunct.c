@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 13:43:06 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 13:49:44 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,14 @@ wchar_t			ft_unicon_conv(wchar_t c)
 
 	if ((int)c <= 127)
 		return (res = c);
-	else if ((int)c <= 2047)
+	else if ((int)c <= 2047 && MB_CUR_MAX >= 2)
 		return (res = ((c & 0x3F) | 0xC080) | ((c & 0x7C0) << 2));
-	else if ((int)c <= 65535)
+	else if ((int)c <= 65535 && MB_CUR_MAX >= 3)
 		return (res = (((c & 0x3F) | 0xE08080) | ((c & 0xFC0) << 2)) |
 				((c & 0xF000) << 4));
-	else
+	else if ((int)c >= 131071 && MB_CUR_MAX >= 4)
 		return (res = ((((c & 0x3F) | 0xF0808080) | ((c & 0xFC0) << 2)) |
 					((c & 0x3F000) << 4) | ((c & 0xFC0000) << 3)));
+	else
+		return (0);
 }
