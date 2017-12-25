@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 18:05:50 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/25 18:07:05 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ wchar_t			ft_unicon_conv(wchar_t c, t_flg *lst)
 {
 	wchar_t		res;
 
+	res = 0;
 	if (MB_CUR_MAX > 1 || (lst->type == 'S' || lst->type == 's'))
 	{
 	if ((int)c <= 127)
