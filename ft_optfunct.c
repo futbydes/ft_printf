@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/26 16:08:04 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/26 16:09:16 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ char			*ft_unicon_arr(t_or *u, t_flg *lst)
 
 	x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct > 65535) +
 		((unsigned int)u->wct > 16777215);
-	printf("::::::::%d\n", x);
 	y = 0;
 	if (lst->type == 'C' || lst->type == 'c')
 		MB_CUR_MAX == 1 ? x = 1 : 0;
