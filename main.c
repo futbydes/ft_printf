@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/26 13:44:50 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/26 15:53:06 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int		main(void)
 	wchar_t	wc = 0;
 	wchar_t	*awc = 0;
 
-	setlocale(LC_ALL, "");
-
+//	setlocale(LC_ALL, "");
+/*
 	printf("==TEST_1==\n");
 	printf("%d\n", x);
 	ft_printf("%d\n", x);
@@ -638,13 +638,13 @@ int		main(void)
 	x = ft_printf("%s%C%s", "Lalalala, 100% des gens qui parlent Ly ", L'牐', "adorent Ly. Ou Presque. 2, 10, 2710");
 	printf("%d\n", x); 
 
+	printf("==TEST_XXXX==\n");
 	x = printf("or_just a text:%- +013d!\n", -42);
 	printf("%d\n", x); 
 	x = ft_printf("ft_just a text:%- +013d!\n", -42);
 	printf("%d\n", x); 
 	printf("%4.1S\n", L"Jambon");
 	ft_printf("%4.1S\n", L"Jambon");
-
 	printf("::%5.C\n", L'牐');
 	printf("::%5.3C\n", L'😆');
 	printf("::%.C\n", L'⟵');
@@ -655,9 +655,20 @@ int		main(void)
 	ft_printf("%.C\n", L'⟵');
 	ft_printf("%6C\n", L'ᵪ');
 	ft_printf("%3.C\n", L'ࡧ');
-
 	printf("::::::::%-021.15S\n", L"我是一只我是一只");
 	ft_printf(":::s::::%-021.15S\n", L"我是一只我是一只");
+*/
+	setlocale(LC_ALL, "");
+	printf("%C\n", L'ऋ');
+	ft_printf("%C\n", L'ऋ');
+
+
+//	x = 0x000000;
+//	while (x != 0x10FFFF)
+//	{
+//		printf("%C\n", x);
+//		x++;
+//	}
 	/*
 	 * 
 	 *как изменить юникод из структуры на юнион?
