@@ -6,13 +6,11 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/26 16:28:55 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/26 17:24:04 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 char			*ft_realloc(char **arr, int size, t_or *u)
 {
@@ -89,7 +87,7 @@ wchar_t			ft_unicon_conv(wchar_t c, t_flg *lst)
 	res = 0;
 	if (MB_CUR_MAX > 1 || (lst->type == 'S' || lst->type == 's'))
 	{
-	if ((unsigned int)c <= 127)
+	if ((int)c <= 127)
 		return (res = (char)c);
 	else if ((int)c <= 2047)
 		return (res = ((c & 0x3F) | 0xC080) | ((c & 0x7C0) << 2));

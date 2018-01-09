@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/26 16:24:33 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/26 17:38:51 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int		main(void)
 	wchar_t	wc = 0;
 	wchar_t	*awc = 0;
 
-//	setlocale(LC_ALL, "");
-/*
+	setlocale(LC_ALL, "");
+
 	printf("==TEST_1==\n");
 	printf("%d\n", x);
 	ft_printf("%d\n", x);
@@ -559,9 +559,7 @@ int		main(void)
 
 	printf("==TEST_100==\n");
 	x = printf("%+o\n", 42);
-//	x = printf("%#+o\n", 4242343);
 	x = ft_printf("%+o\n", 42);
-//	x = ft_printf("%#+o\n", 4242343);
 
 	printf("==TEST_100==\n");
 	x = printf("% 03d", 0);
@@ -580,10 +578,6 @@ int		main(void)
 	x = ft_printf("%.3%\n", 0);
 	x = printf("%05.6%\n", 0);
 	x = ft_printf("%05.6%\n", 0);
-//	printf("%d\n", x); 
-//	x = ft_printf("%.3%", 0);
-//	x = ft_printf("%05.%", 0);
-//	printf("%d\n", x); 
 
 	printf("==TEST_100==\n");
 	x = printf("%05.Z", 0);
@@ -597,13 +591,13 @@ int		main(void)
 	x = ft_printf("%#.5o", 1012);
 	printf("%d\n", x); 
 
-	printf("==TEST_100==\n");
+	printf("==TEST_1001==\n");
 	x = printf("%.5S", L"我是一只猫。");
 	printf("%d\n", x); 
 	x = ft_printf("%.5S", L"我是一只猫。");
 	printf("%d\n", x); 
 
-	printf("==TEST_100==\n");
+	printf("==TEST_1002==\n");
 	x = printf("% 4i", 12221);
 	printf("%d\n", x); 
 	x = ft_printf("% 4i", 12221);
@@ -633,42 +627,19 @@ int		main(void)
 	x = ft_printf("%C\n", L'§');
 
 	printf("==TEST_98==\n");
-	x = printf("%s%C%s", "Lalalala, 100% des gens qui parlent Ly ", L'牐', "adorent Ly. Ou Presque. 2, 10, 2710");
 	printf("%d\n", x); 
-	x = ft_printf("%s%C%s", "Lalalala, 100% des gens qui parlent Ly ", L'牐', "adorent Ly. Ou Presque. 2, 10, 2710");
+	x = ft_printf("%S\n", L"dsi§dsd");
 	printf("%d\n", x); 
 
-	printf("==TEST_XXXX==\n");
-	x = printf("or_just a text:%- +013d!\n", -42);
-	printf("%d\n", x); 
-	x = ft_printf("ft_just a text:%- +013d!\n", -42);
-	printf("%d\n", x); 
-	printf("%4.1S\n", L"Jambon");
-	ft_printf("%4.1S\n", L"Jambon");
-	printf("::%5.C\n", L'牐');
-	printf("::%5.3C\n", L'😆');
-	printf("::%.C\n", L'⟵');
-	printf("::%6C\n", L'ᵪ');
-	printf("::%.3C\n", L'ࡧ');
-	ft_printf("%5.C\n", L'牐');
-	ft_printf("%5.3C\n", L'😆');
-	ft_printf("%.C\n", L'⟵');
-	ft_printf("%6C\n", L'ᵪ');
-	ft_printf("%3.C\n", L'ࡧ');
-	printf("::::::::%-021.15S\n", L"我是一只我是一只");
-	ft_printf(":::s::::%-021.15S\n", L"我是一只我是一只");
-*/
-	setlocale(LC_ALL, "");
-	printf("%C\n", L'😆');
-	ft_printf("%C\n", L'😆');
-
-
+//	printf("%C", L'⟵');
+	
 //	x = 0x000000;
 //	while (x != 0x10FFFF)
 //	{
-//		printf("%C\n", x);
+//		ft_printf("%C\n", x);
 //		x++;
 //	}
+//	*/
 	/*
 	 * 
 	 *как изменить юникод из структуры на юнион?

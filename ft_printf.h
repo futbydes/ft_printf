@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:22:32 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 15:43:03 by vludan           ###   ########.fr       */
+/*   Updated: 2017/12/26 17:24:13 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <wchar.h>
+# include <inttypes.h>
+# include <stdio.h>
 
 typedef struct 	s_flags
 {

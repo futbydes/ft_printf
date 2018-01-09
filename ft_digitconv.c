@@ -6,12 +6,17 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 16:21:39 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 17:05:12 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/09 13:05:11 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
+
+void		ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
 
 char		*digit_conv(t_flg *flags, t_or *u)
 {
@@ -27,16 +32,25 @@ char		*digit_conv(t_flg *flags, t_or *u)
 	if (flags->type == 'x' || flags->type == 'X' || flags->type == 'p')
 		t = ft_ib_u(u->us, 16);
 	if ((flags->type == 'c' && flags->size == 3) || flags->type == 'C')
+	{
+		ft_putchar('a');
 		t = ft_unicon(flags, u);
+	}
 	if (flags->type == '%' || (flags->type == 'c' && flags->size != 3))
 		t = (flags->type == '%' ? ft_charr('%') : ft_charr(u->uc));
 	if ((flags->type == 's' || flags->type == 'S') && u->arr == 0 &&
 			flags->awct == 0)
 		t = ft_null_arr(flags, t);
 	else if (flags->type == 's' && 3 != flags->size)
+	{
+		ft_putchar('b');
 		t = ft_realloc(&(u->arr), 0, u);
+	}
 	else if ((flags->type == 's' && 3 == flags->size) || flags->type == 'S')
+	{
+		ft_putchar('c');
 		t = ft_unicon(flags, u);
+	}
 	return (t);
 }
 
@@ -71,15 +85,11 @@ char		*presc_conv(t_flg *lst, char *t, t_or *u)
 char		*ft_format_str(t_flg *lst, char *t, t_or *u)
 {
 	*t == '-' ? (lst->sign = 1) : 0;
-//	printf("::::1::::::%s\n", t);
 	lst->zero == 1 ? t = ft_format_zero(lst, t, u) : 0;
-//	printf("::::1::::::%s\n", t);
 	lst->sps == 1 ? t = ft_addspace(lst, t, u) : 0;
-//	printf("::::1::::::%s\n", t);
 	if (lst->sign > 0 || lst->oct == 1 || lst->type == 'p' ||
 			lst->plus == 1)
 		t = ft_addsign(lst, t, u);
-//	printf("::::1::::::%s\n", t);
 	if (lst->minus == 1 || lst->m_fw > (int)ft_strlen(t))
 		t = alignment_mfw(lst, t, u);
 	if (lst->type == 'p' || (lst->type == 'x'))
@@ -88,7 +98,6 @@ char		*ft_format_str(t_flg *lst, char *t, t_or *u)
 		lst->btread = ft_strlen(t + 1);
 	else if ((lst->type == 'C' || lst->type == 'c') && u->uc == 0)
 		lst->btread = ft_strlen(t) + 1;
-//	printf("::::1::::::%s\n", t);
 	return (t);
 }
 
