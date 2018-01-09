@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 16:21:39 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/09 13:10:49 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/09 13:11:57 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char		*digit_conv(t_flg *flags, t_or *u)
 		t = ft_ib_u(u->us, 16);
 	if ((flags->type == 'c' && flags->size == 3) || flags->type == 'C')
 	{
-		ft_putchar('a');
+		ft_putchar('x');
 		t = ft_unicon(flags, u);
 	}
 	if (flags->type == '%' || (flags->type == 'c' && flags->size != 3))
@@ -42,10 +42,7 @@ char		*digit_conv(t_flg *flags, t_or *u)
 			flags->awct == 0)
 		t = ft_null_arr(flags, t);
 	else if (flags->type == 's' && 3 != flags->size)
-	{
-		ft_putchar('u');
 		t = ft_realloc(&(u->arr), 0, u);
-	}
 	else if ((flags->type == 's' && 3 == flags->size) || flags->type == 'S')
 	{
 		ft_putchar('c');
