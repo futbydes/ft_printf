@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 14:42:09 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 14:43:32 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,22 @@ char			*ft_unicon_arr(t_or *u, t_flg *lst)
 	x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct > 65535) +
 		((unsigned int)u->wct > 16777215);
 	y = 0;
-	printf("%d\n", x);
 	MB_CUR_MAX < x ? x = 1 : 0;
-	printf("%d\n", x);
 	arr = ft_memalloc(x);
 	if ((lst->prc > -1 && (lst->type == 's' || lst->type == 'S')) ||
 		   	((lst->prc > 0 && lst->m_fw <= lst->prc) && (lst->type == 'C' ||
 				lst->type == 'c')))
 	{
+		printf("!\n");
 		lst->prc -= x;
 		if (lst->prc < 0)
 			return (arr);
 	}
 	while (x--)
+	{
 		arr[y++] = u->byte[x];
+		printf(":)");
+	}
 	return (arr);
 }
 
