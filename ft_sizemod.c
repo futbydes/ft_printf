@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:32:00 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/20 16:11:25 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 15:26:02 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void		size_check_jz(char **spec, t_flg *flags)
 	{
 		if (**spec == 'z')
 		{
-			flags->size < z? flags->size = z : 0;
+			flags->size < z ? flags->size = z : 0;
 			(*spec)++;
 		}
 		if (**spec == 'j')
 		{
-			flags->size < j? flags->size = j : 0;
+			flags->size < j ? flags->size = j : 0;
 			(*spec)++;
 		}
 	}
@@ -57,16 +57,16 @@ void		size_check_jz(char **spec, t_flg *flags)
 
 int			size_check(char **spec, t_flg *flags)
 {
-   if (**spec == 'h' || **spec == 'l' || **spec == 'j' || **spec == 'z')
-   {
-	   while ((**spec == 'h' || **spec == 'l' || **spec == 'j' ||
-			   **spec == 'z') && (**spec != 0))
+	if (**spec == 'h' || **spec == 'l' || **spec == 'j' || **spec == 'z')
+	{
+		while ((**spec == 'h' || **spec == 'l' || **spec == 'j' ||
+					**spec == 'z') && (**spec != 0))
 		{
 			(**spec == 'h' || **spec == 'l') ? size_check_hl(spec, flags) : 0;
 			(**spec == 'j' || **spec == 'z') ? size_check_jz(spec, flags) : 0;
 		}
-	   return (1);
-   }
+		return (1);
+	}
 	else
 		return (0);
 }

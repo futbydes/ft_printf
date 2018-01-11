@@ -6,17 +6,17 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 12:38:23 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 12:10:10 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 15:27:14 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-int				type_check(char **spec, t_flg *flags)
+int					type_check(char **spec, t_flg *flags)
 {
-	int			x;
-	char		type_mod[16];
+	int				x;
+	char			type_mod[16];
 
 	x = 0;
 	ft_strcpy(type_mod, "sSpdDioOuUxXcC%");
@@ -76,7 +76,7 @@ void				type_conv_s(t_flg *flags, va_list pt, t_or *u)
 		u->c = va_arg(pt, int);
 }
 
-int				type_conv_uors(t_flg *f)
+int					type_conv_uors(t_flg *f)
 {
 	if (f->type == 'u' || f->type == 'U' || f->type == 'x' || f->type == 'X' ||
 			f->type == 'o' || f->type == 'O' || f->type == 'p')
@@ -85,7 +85,7 @@ int				type_conv_uors(t_flg *f)
 		return (0);
 }
 
-int				type_conv_sflgs(t_flg *f)
+int					type_conv_sflgs(t_flg *f)
 {
 	if ('s' == f->type || 'S' == f->type || 'D' == f->type || 'c' == f->type ||
 			'C' == f->type)

@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:34:56 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/22 10:43:38 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 15:03:11 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static uintmax_t			num_len(uintmax_t num, uintmax_t base)
 	return (x);
 }
 
-char			*ft_ib_u(uintmax_t num, uintmax_t base)
+char						*ft_ib_u(uintmax_t num, uintmax_t base)
 {
-	char		*arr;
-	char		*temp;
-	uintmax_t	x;
+	char					*arr;
+	char					*temp;
+	uintmax_t				x;
 
 	x = num_len(num, base);
 	x == 0 ? x++ : 0;

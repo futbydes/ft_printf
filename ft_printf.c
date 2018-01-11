@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 16:22:38 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 13:40:18 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 16:28:07 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <unistd.h>
 #include "ft_printf.h"
 
-int			symb_check(char **spec, t_flg *lst)
+int				symb_check(char **spec, t_flg *lst, va_list pt)
 {
-	int		x;
+	int			x;
 
 	x = 0;
 	(*spec)++;
@@ -25,8 +25,8 @@ int			symb_check(char **spec, t_flg *lst)
 	{
 		x = 0;
 		x > 0 ? flag_check(spec, lst) : (x = flag_check(spec, lst));
-		x > 0 ? min_width(spec, lst) : (x = min_width(spec, lst));
-		x > 0 ? prescision(spec, lst) : (x = prescision(spec, lst));
+		x > 0 ? min_width(spec, lst, pt) : (x = min_width(spec, lst, pt));
+		x > 0 ? prescision(spec, lst, pt) : (x = prescision(spec, lst, pt));
 		x > 0 ? size_check(spec, lst) : (x = size_check(spec, lst));
 		if ((type_check(spec, lst) && (x = 1)) || x == 0)
 			return (x);
@@ -34,7 +34,7 @@ int			symb_check(char **spec, t_flg *lst)
 	return (x);
 }
 
-void	ft_strctn(t_flg *lst)
+void			ft_strctn(t_flg *lst)
 {
 	lst->plus = 0;
 	lst->sps = 0;
@@ -50,12 +50,12 @@ void	ft_strctn(t_flg *lst)
 	lst->btread = 0;
 }
 
-char		*print_operate(char **spec, va_list pt, t_flg *lst)
+char			*print_operate(char **spec, va_list pt, t_flg *lst)
 {
-	t_or	*u;
-	char	*t;
+	t_or		*u;
+	char		*t;
 
-	if (!(symb_check(spec, lst)))
+	if (!(symb_check(spec, lst, pt)))
 	{
 		t = ft_memalloc(1 + 1);
 		t = ft_strncpy(t, *spec, 1);
@@ -73,10 +73,10 @@ char		*print_operate(char **spec, va_list pt, t_flg *lst)
 	return (t);
 }
 
-int			print_check(char **spec, va_list pt, int x)
+int				print_check(char **spec, va_list pt, int x)
 {
-	char	*t;
-	t_flg	*lst;
+	char		*t;
+	t_flg		*lst;
 
 	while (**spec != 0)
 	{
@@ -96,7 +96,7 @@ int			print_check(char **spec, va_list pt, int x)
 	return (x);
 }
 
-int		ft_printf(char *spec, ...)
+int				ft_printf(char *spec, ...)
 {
 	va_list		pt;
 	int			x;

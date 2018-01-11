@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 14:45:12 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 15:26:39 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ char			*ft_unicon(t_flg *lst, t_or *u)
 	}
 	if (lst->type == 'C' || lst->type == 'c')
 	{
-			u->wct = ft_unicon_conv(u->wct, lst);
-			t = ft_unicon_arr(u, lst);
+		u->wct = ft_unicon_conv(u->wct, lst);
+		t = ft_unicon_arr(u, lst);
 	}
 	return (t);
 }
@@ -68,7 +68,7 @@ char			*ft_unicon_arr(t_or *u, t_flg *lst)
 	MB_CUR_MAX < x ? x = 1 : 0;
 	arr = ft_memalloc(x + 1);
 	if ((lst->prc > -1 && (lst->type == 's' || lst->type == 'S')) ||
-		   	((lst->prc > 0 && lst->m_fw <= lst->prc) && (lst->type == 'C' ||
+			((lst->prc > 0 && lst->m_fw <= lst->prc) && (lst->type == 'C' ||
 				lst->type == 'c')))
 	{
 		lst->prc -= x;

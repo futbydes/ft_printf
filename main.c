@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 14:14:12 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 17:08:53 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -660,6 +660,18 @@ int		main(void)
 	x = printf("%-2.3c"    ,92);
 	printf("%d\n", x); 
 	x = ft_printf("%-2.3c"    ,92);
+	printf("%d\n", x); 
+
+	printf("==TEST_104==\n");
+	x = printf("%*d", -5, 42);
+	printf("%d\n", x); 
+	x = ft_printf("%*d", -5, 42);
+	printf("%d\n", x); 
+
+	printf("==TEST_104==\n");
+	x = printf("{%.*d}", 5, 42);
+	printf("%d\n", x); 
+	x = ft_printf("{%.*d}", 5, 42);
 	printf("%d\n", x); 
 
 //	printf("%C", L'⟵');

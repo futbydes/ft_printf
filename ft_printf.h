@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:22:32 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/26 17:24:13 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 17:11:03 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@
 # include <inttypes.h>
 # include <stdio.h>
 
-typedef struct 	s_flags
+typedef struct		s_flags
 {
-	char 		plus;
-	char 		sps;
-	char 		minus;
-	char 		oct;
-	char 		zero;
-	int			m_fw;
-	int			prc;
-	char		type;
-	int			size;
-	char		sign;
-	wchar_t		*awct;
-	int			btread;
-}				t_flg;
+	char			plus;
+	char			sps;
+	char			minus;
+	char			oct;
+	char			zero;
+	int				m_fw;
+	int				prc;
+	char			type;
+	int				size;
+	char			sign;
+	wchar_t			*awct;
+	int				btread;
+}					t_flg;
 
 typedef union		u_uors
 {
@@ -47,49 +47,50 @@ typedef union		u_uors
 	unsigned char	byte[5];
 }					t_or;
 
-enum 	e_size_mod{hh = 1, h, l, ll, j, z};
+enum				e_size_mod{hh = 1, h, l, ll, j, z};
 
-int		ft_printf(char *spec, ...);
-int		print_check(char **spec, va_list pt, int x);
-char	*print_operate(char **spec, va_list pt, t_flg *lst);
-int		symb_check(char **spec, t_flg *lst);
-int		flag_check(char **spec, t_flg *flags);
-int		min_width(char **spec, t_flg *flags);
-int		prescision(char **spec, t_flg *flags);
-void	size_check_hl(char **spec, t_flg *flags);
-void	size_check_jz(char **spec, t_flg *flags);
-int		size_check(char **spec, t_flg *flags);
-int		type_check(char **spec, t_flg *flags);
-void	type_conv_u(t_flg *flags, va_list pt, t_or *u);
-void	type_conv_s(t_flg *flags, va_list pt, t_or *u);
-int		type_conv_uors(t_flg *f);
-char	*digit_conv(t_flg *flags, t_or *u);
-char	*ft_ib_u(uintmax_t num, uintmax_t base);
-char	*ft_ib_s(intmax_t num, intmax_t base);
-char	*ft_lowcasealph(char **t);
-char	*ft_charr(unsigned char t);
-int		type_conv_sflgs(t_flg *f);
-char	*presc_conv(t_flg *flags, char *t, t_or *u);
-int		presc_flgs(t_flg *flags);
-void	ft_strctn(t_flg *lst);
-char	*ft_realloc(char **arr, int size, t_or *u);
-char	*ft_format_str(t_flg *lst, char *t, t_or *u);
-char	*ft_addspace(t_flg *lst, char *t, t_or *u);
-char	*ft_format_zero(t_flg *lst, char *t, t_or *u);
-char	*ft_addsign(t_flg *lst, char *t, t_or *u);
-int		ft_addsign_condition(t_flg *lst, char *t, t_or *u);
-char	*alignment_mfw(t_flg *lst, char *t, t_or *u);
-char	*ft_unicon(t_flg *lst, t_or *u);
-wchar_t		ft_unicon_conv(wchar_t c, t_flg *lst);
-char        *ft_unicon_arr(t_or *u, t_flg *lst);
-char	*ft_null_arr(t_flg *lst, char *t);
-int		ft_atoi(const char *str);
-void	*ft_memalloc(size_t size);
-void    *ft_memcpy(void *dst, const void *src, size_t n);
-void    *ft_memmove(void *dst, const void *src, size_t len);
-void    *ft_memset(void *b, int c, size_t len);
-char	*ft_strcpy(char *dst, const char *src);
-size_t  ft_strlen(const char *s);
-char    *ft_strncpy(char *dst, const char *src, size_t len);
+int					ft_printf(char *spec, ...);
+int					print_check(char **spec, va_list pt, int x);
+char				*print_operate(char **spec, va_list pt, t_flg *lst);
+int					symb_check(char **spec, t_flg *lst, va_list pt);
+int					flag_check(char **spec, t_flg *flags);
+int					min_width(char **spec, t_flg *flags, va_list pt);
+int					prescision(char **spec, t_flg *flags, va_list pt);
+int					asterisk_neg(char **spec, t_flg *flags, va_list pt, int flg);
+void				size_check_hl(char **spec, t_flg *flags);
+void				size_check_jz(char **spec, t_flg *flags);
+int					size_check(char **spec, t_flg *flags);
+int					type_check(char **spec, t_flg *flags);
+void				type_conv_u(t_flg *flags, va_list pt, t_or *u);
+void				type_conv_s(t_flg *flags, va_list pt, t_or *u);
+int					type_conv_uors(t_flg *f);
+char				*digit_conv(t_flg *flags, t_or *u);
+char				*ft_ib_u(uintmax_t num, uintmax_t base);
+char				*ft_ib_s(intmax_t num, intmax_t base);
+char				*ft_lowcasealph(char **t);
+char				*ft_charr(unsigned char t);
+int					type_conv_sflgs(t_flg *f);
+char				*presc_conv(t_flg *flags, char *t, t_or *u);
+int					presc_flgs(t_flg *flags);
+void				ft_strctn(t_flg *lst);
+char				*ft_realloc(char **arr, int size, t_or *u);
+char				*ft_format_str(t_flg *lst, char *t, t_or *u);
+char				*ft_addspace(t_flg *lst, char *t, t_or *u);
+char				*ft_format_zero(t_flg *lst, char *t, t_or *u);
+char				*ft_addsign(t_flg *lst, char *t, t_or *u);
+int					ft_addsign_condition(t_flg *lst, char *t, t_or *u);
+char				*alignment_mfw(t_flg *lst, char *t, t_or *u);
+char				*ft_unicon(t_flg *lst, t_or *u);
+wchar_t				ft_unicon_conv(wchar_t c, t_flg *lst);
+char				*ft_unicon_arr(t_or *u, t_flg *lst);
+char				*ft_null_arr(t_flg *lst, char *t);
+int					ft_atoi(const char *str);
+void				*ft_memalloc(size_t size);
+void				*ft_memcpy(void *dst, const void *src, size_t n);
+void				*ft_memmove(void *dst, const void *src, size_t len);
+void				*ft_memset(void *b, int c, size_t len);
+char				*ft_strcpy(char *dst, const char *src);
+size_t				ft_strlen(const char *s);
+char				*ft_strncpy(char *dst, const char *src, size_t len);
 
 #endif
