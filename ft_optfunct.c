@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 14:44:27 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 14:45:12 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ char			*ft_unicon_arr(t_or *u, t_flg *lst)
 	}
 	while (x--)
 		arr[y++] = u->byte[x];
-	printf("%s\n", arr);
 	return (arr);
 }
 
