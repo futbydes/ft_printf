@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 14:36:36 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 14:40:08 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char			*ft_unicon_arr(t_or *u, t_flg *lst)
 	y = 0;
 	MB_CUR_MAX < x ? x = 1 : 0;
 	arr = ft_memalloc(x);
+	printf("%d\n%d\n", lst->m_fw, lst->prc);
 	if ((lst->prc > -1 && (lst->type == 's' || lst->type == 'S')) ||
 		   	((lst->prc > 0 && lst->m_fw <= lst->prc) && (lst->type == 'C' ||
 				lst->type == 'c')))
