@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/26 17:38:51 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 14:14:12 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -626,9 +626,40 @@ int		main(void)
 	x = printf("%C\n", L'§');
 	x = ft_printf("%C\n", L'§');
 
-	printf("==TEST_98==\n");
+	printf("==TEST_101==\n");
+	x = printf("|%5h hi|\t|%20l li|", SHRT_MIN,LONG_MIN);
 	printf("%d\n", x); 
-	x = ft_printf("%S\n", L"dsi§dsd");
+	x = ft_printf("|%5h hi|\t|%20l li|", SHRT_MIN,LONG_MIN);
+	printf("%d\n", x); 
+
+	printf("==TEST_102==\n"); //undef beh
+	x = printf("|%5h hx|\t|%20l lx|", SHRT_MIN,LONG_MIN);
+	printf("%d\n", x); 
+	x = ft_printf("|%5h hx|\t|%20l lx|", SHRT_MIN,LONG_MIN);
+	printf("%d\n", x); 
+
+	printf("==TEST_103==\n");
+	x = printf("%#.7o"    ,0);
+	printf("%d\n", x); 
+	x = ft_printf("%#.7o"    ,0);
+	printf("%d\n", x); 
+
+	printf("==TEST_103==\n");
+	x = printf("|%.o %.0o %0.o %0.0o|\t\t|%o %.2o %2.o %2.2o|\t\t\t\t",0,0,0,0,0,0,0,0);
+	printf("%d\n", x); 
+	x = ft_printf("|%.o %.0o %0.o %0.0o|\t\t|%o %.2o %2.o %2.2o|\t\t\t\t",0,0,0,0,0,0,0,0);
+	printf("%d\n", x); 
+
+	printf("==TEST_103==\n");
+	x = printf("%.2o %2.2o|\t\t\t\t",0,0,0,0,0,0,0,0);
+	printf("%d\n", x); 
+	x = ft_printf("%.2o %2.2o|\t\t\t\t",0,0,0,0,0,0,0,0);
+	printf("%d\n", x); 
+
+	printf("==TEST_104==\n");
+	x = printf("%-2.3c"    ,92);
+	printf("%d\n", x); 
+	x = ft_printf("%-2.3c"    ,92);
 	printf("%d\n", x); 
 
 //	printf("%C", L'⟵');

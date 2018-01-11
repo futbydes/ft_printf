@@ -6,17 +6,12 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 16:21:39 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/09 13:11:57 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 14:24:46 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
-
-void		ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
 
 char		*digit_conv(t_flg *flags, t_or *u)
 {
@@ -32,10 +27,7 @@ char		*digit_conv(t_flg *flags, t_or *u)
 	if (flags->type == 'x' || flags->type == 'X' || flags->type == 'p')
 		t = ft_ib_u(u->us, 16);
 	if ((flags->type == 'c' && flags->size == 3) || flags->type == 'C')
-	{
-		ft_putchar('x');
 		t = ft_unicon(flags, u);
-	}
 	if (flags->type == '%' || (flags->type == 'c' && flags->size != 3))
 		t = (flags->type == '%' ? ft_charr('%') : ft_charr(u->uc));
 	if ((flags->type == 's' || flags->type == 'S') && u->arr == 0 &&
@@ -44,21 +36,18 @@ char		*digit_conv(t_flg *flags, t_or *u)
 	else if (flags->type == 's' && 3 != flags->size)
 		t = ft_realloc(&(u->arr), 0, u);
 	else if ((flags->type == 's' && 3 == flags->size) || flags->type == 'S')
-	{
-		ft_putchar('c');
 		t = ft_unicon(flags, u);
-	}
 	return (t);
 }
 
 char		*presc_conv(t_flg *lst, char *t, t_or *u)
 {
 	int		x;
-	char	*p;
 	char	*temp;
 
 	*t == '-' ? lst->sign = 1 : 0;
-	x = lst->prc - (int)ft_strlen(t);
+	x = lst->prc - (((lst->type == 'o' || lst->type == 'O') && lst->prc != 0
+				&& u->s == 0) ? 0 : (int)ft_strlen(t));
 	if ((lst->type == 'o' || lst->type == 'O') && (1 == lst->oct && x-- &&
 				lst->prc == 0))
 		return (t);
@@ -67,9 +56,10 @@ char		*presc_conv(t_flg *lst, char *t, t_or *u)
 	else if (x >= 0 && 's' != lst->type && 'S' != lst->type &&
 			lst->type != 'c' && lst->type != 'C' && lst->type != '%')
 	{
-		p = ft_realloc(&t, x, u);
-		temp = p;
-		ft_memmove(p + x, p, ft_strlen(p));
+		t = ft_realloc(&t, x, u);
+		temp = t;
+		ft_memmove(t + x, t, (((lst->type == 'o' || lst->type == 'O') &&
+						u->s == 0 && 1 != lst->oct) ? 0 : ft_strlen(t)));
 		temp = ft_memset(temp, '0', (lst->sign == 1 ? x + 1 : x));
 		return (temp);
 	}

@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 10:28:14 by vludan            #+#    #+#             */
-/*   Updated: 2017/12/25 14:57:41 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/11 14:24:21 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char		*alignment_mfw(t_flg *lst, char *t, t_or *u)
 			ft_memmove(new + x, new, ft_strlen(new));
 		t = ft_memset(t, ' ', x);
 	}
-	else if (lst->minus == 1 && lst->m_fw > 0 && lst->m_fw > lst->prc && x > -1)
+	else if (lst->minus == 1 && lst->m_fw > 0 &&  x > -1)
 	{
 		new = ft_realloc(&t, x, u);
 		t = new;
