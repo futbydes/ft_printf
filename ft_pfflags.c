@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:55:32 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 17:12:10 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/14 12:40:39 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,25 +88,4 @@ int			prescision(char **spec, t_flg *flags, va_list pt)
 	}
 	else
 		return (0);
-}
-
-int			asterisk_neg(char **spec, t_flg *flags, va_list pt, int flg)
-{
-	if (flg == 1 && (*spec)++)
-	{
-		flags->prc = va_arg(pt, int);
-		return (1);
-	}
-	else
-	{
-		(*spec)++;
-		flags->m_fw = va_arg(pt, int);
-		if (flags->m_fw < 0)
-		{
-			flags->m_fw *= -1;
-			flags->minus = 1;
-			return (1);
-		}
-	}
-	return (1);
 }

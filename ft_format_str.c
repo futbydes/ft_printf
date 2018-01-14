@@ -6,12 +6,11 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 10:28:14 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 15:18:06 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/13 10:58:36 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 char		*ft_addspace(t_flg *lst, char *t, t_or *u)
 {

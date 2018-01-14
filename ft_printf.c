@@ -6,12 +6,10 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/03 16:22:38 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 16:28:07 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/14 12:30:25 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
 #include "ft_printf.h"
 
 int				symb_check(char **spec, t_flg *lst, va_list pt)
@@ -19,7 +17,6 @@ int				symb_check(char **spec, t_flg *lst, va_list pt)
 	int			x;
 
 	x = 0;
-	(*spec)++;
 	ft_strctn(lst);
 	while (*(*spec) != 0 && *(*spec) != '%')
 	{
@@ -73,17 +70,22 @@ char			*print_operate(char **spec, va_list pt, t_flg *lst)
 	return (t);
 }
 
-int				print_check(char **spec, va_list pt, int x)
+int				print_check(char **spec, va_list pt, va_list n, int x)
 {
 	char		*t;
 	t_flg		*lst;
 
 	while (**spec != 0)
 	{
-		if (**spec == '%' && **spec != 0)
+		if (**spec == '%' && **spec != 0 && (*spec)++)
 		{
 			lst = (t_flg*)ft_memalloc(sizeof(t_flg));
-			t = print_operate(spec, pt, lst);
+			if (*(*spec + 1) == '$' && **spec > '0' && **spec < 58)
+			{
+				va_copy(n, pt);
+				dollar_con(spec, n);
+			}
+			t = print_operate(spec, n, lst);
 			lst->btread == 0 ? lst->btread = ft_strlen(t) : 0;
 			x += lst->btread;
 			write(1, &(*t), lst->btread);
@@ -99,12 +101,14 @@ int				print_check(char **spec, va_list pt, int x)
 int				ft_printf(char *spec, ...)
 {
 	va_list		pt;
+	va_list		n;
 	int			x;
 
 	x = 0;
 	va_start(pt, spec);
+	va_copy(n, pt);
 	while (*spec != 0)
-		x = print_check(&spec, pt, x);
+		x = print_check(&spec, pt, n, x);
 	va_end(pt);
 	return (x);
 }

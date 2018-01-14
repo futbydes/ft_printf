@@ -6,11 +6,10 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 16:21:39 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 14:24:46 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/13 10:58:17 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "ft_printf.h"
 
 char		*digit_conv(t_flg *flags, t_or *u)

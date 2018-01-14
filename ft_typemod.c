@@ -6,12 +6,11 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 12:38:23 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 15:27:14 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/13 11:01:58 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int					type_check(char **spec, t_flg *flags)
 {

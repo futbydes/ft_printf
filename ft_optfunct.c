@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   ft_optfunct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/11 11:55:42 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 15:26:39 by vludan           ###   ########.fr       */
+/*   Created: 2018/01/14 12:38:16 by vludan            #+#    #+#             */
+/*   Updated: 2018/01/14 12:40:07 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char			*ft_realloc(char **arr, int size, t_or *u)
+char		*ft_realloc(char **arr, int size, t_or *u)
 {
-	char		*new;
-	int			len;
+	char	*new;
+	int		len;
 
 	if (!arr)
 		return (*arr);
@@ -27,78 +27,65 @@ char			*ft_realloc(char **arr, int size, t_or *u)
 	return (new);
 }
 
-char			*ft_unicon(t_flg *lst, t_or *u)
+char		*ft_lowcasealph(char **t)
 {
-	char		*t;
-	char		*temp;
-	int			x;
+	int		x;
 
-	if (lst->type == 'S' || lst->type == 's')
+	x = 0;
+	while (**t != 0)
 	{
-		t = ft_memalloc(0);
-		while (*lst->awct)
-		{
-			u->wct = ft_unicon_conv(*(lst->awct)++, lst);
-			x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct >
-					65535) + ((unsigned int)u->wct > 16777215);
-			t = ft_realloc(&(t), x, u);
-			if ((temp = ft_unicon_arr(u, lst)) && *temp == 0)
-				return (t);
-			ft_memcpy(t + ft_strlen(t), temp, x);
-			free(temp);
-		}
+		if (**t >= 'A' && **t <= 'Z')
+			*(*t) += 32;
+		(*t)++;
+		x++;
 	}
-	if (lst->type == 'C' || lst->type == 'c')
-	{
-		u->wct = ft_unicon_conv(u->wct, lst);
-		t = ft_unicon_arr(u, lst);
-	}
-	return (t);
+	(*t) -= x;
+	return (*t);
 }
 
-char			*ft_unicon_arr(t_or *u, t_flg *lst)
+char		*ft_charr(unsigned char t)
 {
-	char		*arr;
-	int			x;
-	int			y;
+	char	*arr;
 
-	x = 1 + ((unsigned int)u->wct > 255) + ((unsigned int)u->wct > 65535) +
-		((unsigned int)u->wct > 16777215);
-	y = 0;
-	MB_CUR_MAX < x ? x = 1 : 0;
-	arr = ft_memalloc(x + 1);
-	if ((lst->prc > -1 && (lst->type == 's' || lst->type == 'S')) ||
-			((lst->prc > 0 && lst->m_fw <= lst->prc) && (lst->type == 'C' ||
-				lst->type == 'c')))
-	{
-		lst->prc -= x;
-		if (lst->prc < 0)
-			return (arr);
-	}
-	while (x--)
-		arr[y++] = u->byte[x];
+	arr = (char*)malloc(2);
+	arr[0] = t;
+	arr[1] = '\0';
 	return (arr);
 }
 
-wchar_t			ft_unicon_conv(wchar_t c, t_flg *lst)
+void		dollar_con(char **spec, va_list pt)
 {
-	wchar_t		res;
+	int		s;
+	int		i;
 
-	res = 0;
-	if (MB_CUR_MAX == 4 || (lst->type == 'S' || lst->type == 's'))
+	s = 0;
+	s = **spec - 49;
+	while (s > 0)
 	{
-		if ((int)c <= 127)
-			return (res = (char)c);
-		else if ((int)c <= 2047)
-			return (res = ((c & 0x3F) | 0xC080) | ((c & 0x7C0) << 2));
-		else if ((int)c <= 65535)
-			return (res = (((c & 0x3F) | 0xE08080) | ((c & 0xFC0) << 2)) |
-					((c & 0xF000) << 4));
-		else if ((int)c >= 65536)
-			return (res = ((((c & 0x3F) | 0xF0808080) | ((c & 0xFC0) << 2)) |
-						((c & 0x3F000) << 4) | ((c & 0xFC0000) << 3)));
+		i = va_arg(pt, int);
+		s--;
+	}
+	(*spec) += 2;
+	return ;
+}
+
+int			asterisk_neg(char **spec, t_flg *flags, va_list pt, int flg)
+{
+	if (flg == 1 && (*spec)++)
+	{
+		flags->prc = va_arg(pt, int);
+		return (1);
 	}
 	else
-		res = (char)c;
-	return (res);
+	{
+		(*spec)++;
+		flags->m_fw = va_arg(pt, int);
+		if (flags->m_fw < 0)
+		{
+			flags->m_fw *= -1;
+			flags->minus = 1;
+			return (1);
+		}
+	}
+	return (1);
 }

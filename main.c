@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 17:08:53 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/14 12:14:59 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -626,13 +626,13 @@ int		main(void)
 	x = printf("%C\n", L'§');
 	x = ft_printf("%C\n", L'§');
 
-	printf("==TEST_101==\n");
+	printf("==TEST_101(undef beh)==\n");
 	x = printf("|%5h hi|\t|%20l li|", SHRT_MIN,LONG_MIN);
 	printf("%d\n", x); 
 	x = ft_printf("|%5h hi|\t|%20l li|", SHRT_MIN,LONG_MIN);
 	printf("%d\n", x); 
 
-	printf("==TEST_102==\n"); //undef beh
+	printf("==TEST_102(undef_beh)==\n");
 	x = printf("|%5h hx|\t|%20l lx|", SHRT_MIN,LONG_MIN);
 	printf("%d\n", x); 
 	x = ft_printf("|%5h hx|\t|%20l lx|", SHRT_MIN,LONG_MIN);
@@ -662,16 +662,22 @@ int		main(void)
 	x = ft_printf("%-2.3c"    ,92);
 	printf("%d\n", x); 
 
-	printf("==TEST_104==\n");
+	printf("==TEST_104==_ASTERISK\n");
 	x = printf("%*d", -5, 42);
 	printf("%d\n", x); 
 	x = ft_printf("%*d", -5, 42);
 	printf("%d\n", x); 
 
-	printf("==TEST_104==\n");
+	printf("==TEST_104.1_ASTERISK==\n");
 	x = printf("{%.*d}", 5, 42);
 	printf("%d\n", x); 
 	x = ft_printf("{%.*d}", 5, 42);
+	printf("%d\n", x); 
+
+	printf("==TEST_104.1_DOLLAR_SIGN==\n");
+	x = printf("%4$17.d%1$17.d%3$6.d%2$d\n", 8, 5, 42, 17);
+	printf("%d\n", x); 
+	x = ft_printf("%4$17.d%1$17.d%3$6.d%2$d\n", 8, 5, 42, 17);
 	printf("%d\n", x); 
 
 //	printf("%C", L'⟵');

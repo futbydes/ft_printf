@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 14:22:32 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/11 17:11:03 by vludan           ###   ########.fr       */
+/*   Updated: 2018/01/14 12:39:21 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdarg.h>
 # include <wchar.h>
 # include <inttypes.h>
-# include <stdio.h>
 
 typedef struct		s_flags
 {
@@ -34,6 +33,7 @@ typedef struct		s_flags
 	char			sign;
 	wchar_t			*awct;
 	int				btread;
+	int				var;
 }					t_flg;
 
 typedef union		u_uors
@@ -50,13 +50,14 @@ typedef union		u_uors
 enum				e_size_mod{hh = 1, h, l, ll, j, z};
 
 int					ft_printf(char *spec, ...);
-int					print_check(char **spec, va_list pt, int x);
+int					print_check(char **spec, va_list pt, va_list n, int x);
 char				*print_operate(char **spec, va_list pt, t_flg *lst);
 int					symb_check(char **spec, t_flg *lst, va_list pt);
 int					flag_check(char **spec, t_flg *flags);
 int					min_width(char **spec, t_flg *flags, va_list pt);
 int					prescision(char **spec, t_flg *flags, va_list pt);
-int					asterisk_neg(char **spec, t_flg *flags, va_list pt, int flg);
+int					asterisk_neg(char **spec, t_flg *flags, va_list pt,
+		int flg);
 void				size_check_hl(char **spec, t_flg *flags);
 void				size_check_jz(char **spec, t_flg *flags);
 int					size_check(char **spec, t_flg *flags);
@@ -92,5 +93,6 @@ void				*ft_memset(void *b, int c, size_t len);
 char				*ft_strcpy(char *dst, const char *src);
 size_t				ft_strlen(const char *s);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
+void				dollar_con(char **spec, va_list pt);
 
 #endif
