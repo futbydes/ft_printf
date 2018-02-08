@@ -6,7 +6,7 @@
 /*   By: vludan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 13:16:24 by vludan            #+#    #+#             */
-/*   Updated: 2018/01/14 12:14:59 by vludan           ###   ########.fr       */
+/*   Updated: 2018/02/08 09:34:33 by vludan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -679,6 +679,9 @@ int		main(void)
 	printf("%d\n", x); 
 	x = ft_printf("%4$17.d%1$17.d%3$6.d%2$d\n", 8, 5, 42, 17);
 	printf("%d\n", x); 
+
+	x = printf(ANSI_COLOR_RED "%s\n", "huy");
+	x = ft_printf(ANSI_Bright_Cyan "%s\n", "huy");
 
 //	printf("%C", L'⟵');
 	
